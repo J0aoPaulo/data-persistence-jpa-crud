@@ -11,12 +11,10 @@ import lombok.*;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String nome;
+    private Integer idUsuario;
 
-    private double valorNaConta;
-    private double transacao;
+    @NonNull private String nome;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Conta conta;
 }

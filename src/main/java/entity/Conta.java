@@ -1,9 +1,7 @@
 package entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,20 +9,27 @@ import java.util.List;
 @Table (name = "Conta")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
+@ToString
 public class Conta {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @PrimaryKeyJoinColumn(name = "idUsuario")
     private Integer idConta;
 
-    @OneToMany(mappedBy = "conta")
-    List<Transacao> transacoes;
+    @OneToOne
+    private Usuario usuario;
 
-    public double valorTotalTransacoes() {
-        double totalTran = 0;
+    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
+    private List<Transacao> transacoes;
+
+    @OneToMany
+    private DescontoRecorrente dr;
+
+    public double valorTotalConta() {
+        double totalNaConta = 0;
         for(Transacao tr : transacoes) {
-            totalTran += tr.getValorTransacao();
+            totalNaConta += tr.getValorTransacao();
         }
-        return totalTran;
+        return totalNaConta;
     }
 }
