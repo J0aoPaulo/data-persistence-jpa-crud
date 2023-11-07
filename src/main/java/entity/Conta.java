@@ -2,7 +2,6 @@ package entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 @Entity
@@ -16,13 +15,13 @@ public class Conta {
     @PrimaryKeyJoinColumn(name = "idUsuario")
     private Integer idConta;
 
-    @OneToOne
+    @OneToOne(mappedBy = "conta")
     private Usuario usuario;
 
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     private List<Transacao> transacoes;
 
-    @OneToMany
+    @OneToMany(mappedBy = "decontoConta")
     private DescontoRecorrente dr;
 
     public double valorTotalConta() {

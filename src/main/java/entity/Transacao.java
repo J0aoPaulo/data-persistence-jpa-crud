@@ -2,10 +2,7 @@ package entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "Transacao")
@@ -21,6 +18,9 @@ public class Transacao {
     @ManyToOne
     private Conta conta;
 
-    @NonNull Date dataTransacao;
+    @NonNull
+    @Column(name = "data_transacao", nullable = false)
+    Date dataTransacao;
+
     private double valorTransacao;
 }
