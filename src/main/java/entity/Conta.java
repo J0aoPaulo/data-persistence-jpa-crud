@@ -15,6 +15,9 @@ public class Conta {
     @PrimaryKeyJoinColumn(name = "idUsuario")
     private Integer idConta;
 
+    @Column(nullable = false)
+    private String nome;
+
     @OneToOne(mappedBy = "conta")
     private Usuario usuario;
 

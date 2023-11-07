@@ -22,5 +22,6 @@ public class Transacao {
     @Column(name = "data_transacao", nullable = false)
     Date dataTransacao;
 
+    @Column(name = "valor_transacao")
     private double valorTransacao;
 }
