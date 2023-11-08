@@ -17,6 +17,6 @@ public class Usuario {
     @Column(nullable = false)
     private String nome;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Conta conta;
 }
