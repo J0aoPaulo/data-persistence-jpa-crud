@@ -25,7 +25,7 @@ public class Conta {
     private List<Transacao> transacoes;
 
     @OneToMany(mappedBy = "decontoConta")
-    private DescontoRecorrente dr;
+    private List<DescontoRecorrente> dr;
 
     public double valorTotalConta() {
         double totalNaConta = 0;
