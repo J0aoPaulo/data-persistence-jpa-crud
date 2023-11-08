@@ -18,13 +18,13 @@ public class Conta {
     @Column(nullable = false)
     private String nome;
 
-    @OneToOne(mappedBy = "conta")
+    @OneToOne
     private Usuario usuario;
 
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     private List<Transacao> transacoes;
 
-    @OneToMany(mappedBy = "decontoConta")
+    @OneToMany(mappedBy = "descontoConta")
     private List<DescontoRecorrente> dr;
 
     public double valorTotalConta() {
