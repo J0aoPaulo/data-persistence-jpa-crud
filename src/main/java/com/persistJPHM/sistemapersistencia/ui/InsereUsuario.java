@@ -1,13 +1,12 @@
-package ui;
+package com.persistJPHM.sistemapersistencia.ui;
 
-import DAO.UsuarioDAO;
-import entity.Usuario;
+import com.persistJPHM.sistemapersistencia.DAO.UsuarioDAO;
+import com.persistJPHM.sistemapersistencia.entity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 
-@ComponentScan("com.persistJPHM.sistemapersistencia.DAO")
+@ComponentScan("com/persistJPHM/sistemapersistencia")
 public class InsereUsuario implements CommandLineRunner {
     @Autowired
     private UsuarioDAO usuarioDAO;
