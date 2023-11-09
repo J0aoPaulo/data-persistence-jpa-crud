@@ -10,6 +10,12 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 @ToString
+
+@NamedQueries({
+    @NamedQuery(name = "findByDateInterval", query = "SELECT t FROM Transacao t WHERE t.dataTransacao BETWEEN :startDate AND :endDate"),
+    @NamedQuery(name = "calculateAverageValue", query = "SELECT AVG(t.valorTransacao) FROM Transacao t")
+})
+
 public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
