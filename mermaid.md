@@ -7,6 +7,7 @@ Conta "1" *-- "*" desconto_recorrente
 
 class Usuario {
 -idUsuario : Integer
+-cpf : String
 -nome : String
 }
 
@@ -24,6 +25,7 @@ class Conta {
 
 class desconto_recorrente {
 -idDesconto : Integer
+-dataDesconto : Date
 -valorDesconto : double
 -restanteConta : double
 +debitarConta() : double
