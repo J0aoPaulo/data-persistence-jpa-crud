@@ -3,7 +3,6 @@ package com.persistJPHM.sistemapersistencia.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
-
 @Entity
 @Table(name = "Transacao")
 @NoArgsConstructor

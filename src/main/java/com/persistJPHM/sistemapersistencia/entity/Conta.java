@@ -4,6 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+@NamedQueries({
+        @NamedQuery(name = "consultarContasComDescontos",
+        query = "SELECT c FROM Conta c LEFT JOIN FETCH c.dr " +
+                "WHERE c.dr IS NOT EMPTY"),
+        @NamedQuery(name = "listarTodosTelefones",
+        query = "SELECT c.numeroTelefone FROM Conta c")
+})
 @Entity
 @Table (name = "Conta")
 @AllArgsConstructor
@@ -14,13 +21,12 @@ public class Conta {
     @Id
     private Integer idUsuario;
 
-    @Column(nullable = false)
-    private String nome;
-
     @OneToOne
     @JoinColumn(name = "idUsuario")
     @MapsId
     private Usuario usuario;
+
+    private String numeroTelefone;
 
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     private List<Transacao> transacoes;

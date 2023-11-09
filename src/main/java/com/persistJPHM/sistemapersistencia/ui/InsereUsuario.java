@@ -16,9 +16,6 @@ public class InsereUsuario implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Usuario usuFodse = new Usuario(null, "hermesonFodase", null);
-        usuarioDAO.save(usuFodse);
-        Conta contaFodase = new Conta(null, "hermesonContafodase", usuFodse, null, null);
-        contaDAO.save(contaFodase);
+
     }
 }
