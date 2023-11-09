@@ -11,7 +11,6 @@ import java.util.List;
         @NamedQuery(name = "listarTodosTelefones",
         query = "SELECT c.numeroTelefone FROM Conta c")
 })
-
 @Entity
 @Table (name = "Conta")
 @AllArgsConstructor

@@ -21,7 +21,7 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Integer> {
    @Query("SELECT u FROM Usuario u WHERE SUBSTRING(u.cpf, 1, 3) = :tresPrimeirosNumeros")
     Set<Usuario> procureCpfsComTresPrimeirosNumeros(@Param("tresPrimeirosNumeros") String tresPrimeirosNumeros);
 
-    //Procurar usuarios entre doi‘ids’ diferentes
+    //Procurar usuarios entre dois 'ids’ diferentes
     @Query(name = "usuarioEntreID")
     public Usuario consultarUsuarioEntreId(String cpfInicial, String cpfFinal);
 

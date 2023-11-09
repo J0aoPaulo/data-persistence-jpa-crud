@@ -8,7 +8,6 @@ import lombok.*;
         query = "SELECT u FROM Usuario u WHERE u.id BETWEEN :idInicial AND :idFinal"),
         @NamedQuery(name = "consultaPorNome",
         query = "SELECT u FROM Usuario u WHERE u.nome = :nome")})
-
 @Entity
 @Table(name = "Usuario")
 @AllArgsConstructor
