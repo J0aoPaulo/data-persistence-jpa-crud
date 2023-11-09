@@ -3,17 +3,18 @@ package com.persistJPHM.sistemapersistencia.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
+
+@NamedQueries({
+        @NamedQuery(name = "findByDateInterval", query = "SELECT t FROM Transacao t WHERE t.dataTransacao BETWEEN :startDate AND :endDate"),
+        @NamedQuery(name = "calculateAverageValue", query = "SELECT AVG(t.valorTransacao) FROM Transacao t")
+})
+
 @Entity
 @Table(name = "Transacao")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
-
-@NamedQueries({
-    @NamedQuery(name = "findByDateInterval", query = "SELECT t FROM Transacao t WHERE t.dataTransacao BETWEEN :startDate AND :endDate"),
-    @NamedQuery(name = "calculateAverageValue", query = "SELECT AVG(t.valorTransacao) FROM Transacao t")
-})
 
 public class Transacao {
     @Id

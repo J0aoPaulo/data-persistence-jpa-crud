@@ -55,5 +55,4 @@ public interface TransacaoDAO extends JpaRepository<Transacao, Integer> {
 
   // busca a transação com o valor mais alto
   public Transacao findTopByOrderByValorTransacaoDesc();
-
 }
