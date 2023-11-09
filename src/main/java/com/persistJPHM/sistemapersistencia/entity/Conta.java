@@ -12,13 +12,14 @@ import java.util.List;
 @ToString
 public class Conta {
     @Id
-    @PrimaryKeyJoinColumn(name = "idUsuario")
-    private Integer idConta;
+    private Integer idUsuario;
 
     @Column(nullable = false)
     private String nome;
 
     @OneToOne
+    @JoinColumn(name = "idUsuario")
+    @MapsId
     private Usuario usuario;
 
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)

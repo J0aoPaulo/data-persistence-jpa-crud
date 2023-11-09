@@ -17,7 +17,8 @@ class Transacao {
 }
 
 class Conta {
--idConta : Integer
+-idUsuario : Integer
+-nome : String
 +valorTotalConta()
 }
 
