@@ -23,6 +23,8 @@ public class Usuario {
     @Column(nullable = false)
     private String nome;
 
+    @NonNull
+    @Column(nullable = false)
     private String cpf;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)

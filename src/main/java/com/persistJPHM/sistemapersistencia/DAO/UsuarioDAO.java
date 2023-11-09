@@ -15,23 +15,23 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Integer> {
     Usuario findFirstByCpf(String cpf);
 
     //Buscar por nome em ordem alfabética
-    Usuario findByNameOrderByName(String nome);
-
-    //Consultar nomes de Usuarios por um caractere específico
-    @Query(value = "Select nome FROM Usuario WHERE LOWER(nome) LIKE :prefix%", nativeQuery = true)
-    List<String> consultaPorLetra(@Param("prefix") String prefix);
+    Usuario findByNomeOrderByNome(String nome);
 
     //Procurar cpf pelos 3 primeiros numeros fornecidos
-    @Query("SELECT u.cpf FROM Usuario WHERE SUBSTRING(u.cpf, 1, 3) = :tresPrimeirosNumeros")
-    Set<String> procureCpfsComTresPrimeirosNumeros(@Param("tresPrimeirosNumeros") String tresPrimeirosNumeros);
+   @Query("SELECT u FROM Usuario u WHERE SUBSTRING(u.cpf, 1, 3) = :tresPrimeirosNumeros")
+    Set<Usuario> procureCpfsComTresPrimeirosNumeros(@Param("tresPrimeirosNumeros") String tresPrimeirosNumeros);
 
-    //Procurar usuarios entre dois ‘ids’ diferentes
+    //Procurar usuarios entre doi‘ids’ diferentes
     @Query(name = "usuarioEntreID")
     public Usuario consultarUsuarioEntreId(String cpfInicial, String cpfFinal);
 
     //Consultar Usuario por nome específico
-    @Query("consultaPorNome")
+    @Query(name = "consultaPorNome")
     public Usuario consultaPorNomeEspecifico(String nome);
+
+    //Consultar nomes de Usuarios por um caractere específico
+    @Query(value = "Select nome FROM Usuario WHERE LOWER(nome) LIKE :prefix%", nativeQuery = true)
+    List<String> consultaPorLetra(@Param("prefix") String prefix);
 
     //Conta quantos usuarios existem
     @Query(value = "select count(*) from usuario u", nativeQuery = true)
