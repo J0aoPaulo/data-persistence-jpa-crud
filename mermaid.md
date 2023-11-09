@@ -19,7 +19,7 @@ class Transacao {
 
 class Conta {
 -idUsuario : Integer
--nome : String
+-numeroTelefone : String
 +valorTotalConta()
 }
 
