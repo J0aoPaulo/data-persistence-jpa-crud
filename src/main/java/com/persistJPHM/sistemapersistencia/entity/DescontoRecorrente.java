@@ -8,6 +8,11 @@ import lombok.ToString;
 
 import java.util.Date;
 
+@NamedQueries({
+    @NamedQuery(name = "findAllOrderByDataDescontoAsc", query = "SELECT dr FROM DescontoRecorrente dr ORDER BY dr.dataDesconto ASC"),
+    @NamedQuery(name = "findAllByValorDescontoBetween", query = "SELECT dr FROM DescontoRecorrente dr WHERE dr.valorDesconto BETWEEN :minValor AND :maxValor")
+})
+
 @Entity
 @Table(name = "desconto_recorrente")
 @AllArgsConstructor
