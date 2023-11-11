@@ -18,20 +18,20 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Integer> {
     Usuario findByNomeOrderByNome(String nome);
 
     //Procurar cpf pelos 3 primeiros numeros fornecidos
-   @Query("SELECT u FROM Usuario u WHERE SUBSTRING(u.cpf, 1, 3) = :tresPrimeirosNumeros")
-    Set<Usuario> procureCpfsComTresPrimeirosNumeros(@Param("tresPrimeirosNumeros") String tresPrimeirosNumeros);
+    @Query("SELECT u FROM Usuario u WHERE SUBSTRING(u.cpf, 1, 3) = :tresPrimeirosNumeros")
+    List<Usuario> procureCpfsComTresPrimeirosNumeros(@Param("tresPrimeirosNumeros") String tresPrimeirosNumeros);
 
     //Procurar usuarios entre dois 'ids’ diferentes
     @Query(name = "usuarioEntreID")
-    public Usuario consultarUsuarioEntreId(String cpfInicial, String cpfFinal);
+    public List<Usuario> consultarUsuarioEntreId(String idInicial, String idFinal);
 
     //Consultar Usuario por nome específico
     @Query(name = "consultaPorNome")
-    public Usuario consultaPorNomeEspecifico(String nome);
+    public List<Usuario> consultaPorNomeEspecifico(String nome);
 
     //Consultar nomes de Usuarios por um caractere específico
-    @Query(value = "Select nome FROM Usuario WHERE LOWER(nome) LIKE :prefix%", nativeQuery = true)
-    List<String> consultaPorLetra(@Param("prefix") String prefix);
+    @Query(value = "Select * FROM Usuario WHERE nome LIKE :prefix%", nativeQuery = true)
+    List<Usuario> consultaPorLetra(@Param("prefix") String prefix);
 
     //Conta quantos usuarios existem
     @Query(value = "select count(*) from usuario u", nativeQuery = true)
