@@ -21,7 +21,6 @@ public class MenuContas {
         EXIBIR_POR_ID,
         EXIBIR_POR_NUMERO,
         EXIBIR_POR_DDD,
-        EXIBIR_MAIOR_VALOR_X,
         EXIBIR_TOTAL_TRANSACOES,
         EXIBIR_TOTAL_CONTAS,
         EXIBIR_CONTAS_DESCONTO,
