@@ -19,11 +19,11 @@ import java.util.List;
 @ToString
 public class Conta {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
 
     @OneToOne
-    @JoinColumn(name = "idUsuario")
-    @MapsId
+    @PrimaryKeyJoinColumn
     private Usuario usuario;
 
     private String numeroTelefone;

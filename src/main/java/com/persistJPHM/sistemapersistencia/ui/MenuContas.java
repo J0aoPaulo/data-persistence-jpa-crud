@@ -107,7 +107,7 @@ public class MenuContas {
             case INSERIR:
                 conta = new Conta();
                 obterConta(conta);
-                baseConta.save(conta);
+                if(conta != null) baseConta.save(conta);
                 break;
             case EXIBIR_POR_ID:
                 int idConta = Integer.parseInt(JOptionPane.showInputDialog("Id da conta"));

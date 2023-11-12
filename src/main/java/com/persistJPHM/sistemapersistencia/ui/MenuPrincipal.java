@@ -1,5 +1,7 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
+import javax.swing.JOptionPane;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +18,10 @@ public class 	MenuPrincipal implements CommandLineRunner {
 
 	@Autowired
 	MenuTransacoes menuTransacoes;
+
+	@Autowired
+	MenuContas menucontas;
+
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(MenuPrincipal.class);
 		builder.headless(false).run(args);
@@ -23,7 +29,26 @@ public class 	MenuPrincipal implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//menuUsuarios.menu();
-		menuTransacoes.menu();
+		// menuTransacoes.menu();
+		// menucontas.menu();
+		int op = 0;
+
+		while(op < 4) {
+			op = Integer.parseInt(JOptionPane.showInputDialog(null, "1 - Usuarios\n2 - Conta\n3 - Transacoes\n"));
+
+			switch (op) {
+				case 1:
+					menuUsuarios.menu();
+				break;
+				case 2:
+					menucontas.menu();
+				break;
+				case 3:
+					menuTransacoes.menu();
+				break;
+				default:
+					break;
+			}
+		}
 	}
 }
