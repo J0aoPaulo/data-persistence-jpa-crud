@@ -31,7 +31,7 @@ public interface ContaDAO extends JpaRepository<Conta, Integer> {
     public Conta findContaComMaiorValorTotal();
 
     //Listar todas as contas existentes -
-    @Query(value = "Select c FROM Conta c", nativeQuery = true)
+    @Query(value = "SELECT * FROM Conta", nativeQuery = true)
     public List<Conta> consultarTodasContas();
 
     //Consultar todas as contas com um desconto recorrente nelas -

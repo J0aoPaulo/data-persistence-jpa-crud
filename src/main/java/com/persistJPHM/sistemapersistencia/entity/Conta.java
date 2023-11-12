@@ -28,9 +28,6 @@ public class Conta {
 
     private String numeroTelefone;
 
-    private double totalNaConta;
-
-    @ToString.Exclude
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     private List<Transacao> transacoes;
 
@@ -39,6 +36,7 @@ public class Conta {
     private List<DescontoRecorrente> dr;
 
     public double valorTotalConta() {
+        double totalNaConta = 0;
         for(Transacao tr : transacoes) {
             totalNaConta += tr.getValorTransacao();
         }

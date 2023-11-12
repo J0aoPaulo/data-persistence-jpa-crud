@@ -36,4 +36,7 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Integer> {
     //Conta quantos usuarios existem
     @Query(value = "select count(*) from usuario u", nativeQuery = true)
     public long contaUsuarios();
+
+    @Query("SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
+    Usuario findByIdUsuario(@Param("idUsuario") Integer idUsuario);
 }
