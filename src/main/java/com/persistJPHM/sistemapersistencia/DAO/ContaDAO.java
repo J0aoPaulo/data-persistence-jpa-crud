@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ContaDAO extends JpaRepository<Conta, Integer> {
     //Pesquisar um id de conta especifico -
-    Conta findByidUsuario(Integer idUsuario);
+    Conta findByidConta(Integer idUsuario);
 
     //Pesquisar numero de telefone específico -
     Conta findByNumeroTelefone(String numero);
@@ -20,13 +20,9 @@ public interface ContaDAO extends JpaRepository<Conta, Integer> {
     @Query("SELECT c FROM Conta c WHERE SUBSTRING(c.numeroTelefone, 1, 2) = :ddd")
     public List<Conta> consultaPorDdd(@Param("ddd") String ddd);
 
-    //Mostra os valores nas contas que são maiores que um valor x -
-    @Query("SELECT c FROM Conta c WHERE c.valorTotalConta() > :valorLimite")
-    public List<Conta> valoresNaContaMaior(@Param("valorLimite") double valorLimite);
-
     //Consultar total de todas as transações -
     @Query(value = "SELECT c.* FROM Conta c" +
-            " ORDER BY c.totalNaConta DESC LIMIT 1",
+            " ORDER BY c.totalNaConta() DESC LIMIT 1",
             nativeQuery = true)
     public Conta findContaComMaiorValorTotal();
 

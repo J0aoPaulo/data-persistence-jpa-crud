@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Component
@@ -36,15 +37,11 @@ public class MenuContas {
 
     public void obterConta(Conta con) {
         String numeroTele = JOptionPane.showInputDialog("Numero de telefone associado a conta: ", con.getNumeroTelefone());
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do usuario associado a conta"));
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do usuario que será associado a conta"));
 
         Usuario usuario = baseUsuario.findByIdUsuario(id);
-        if(usuario == null) {
-            JOptionPane.showMessageDialog(null, "usuario não existente");
-        } else {
-            con.setNumeroTelefone(numeroTele);
-            con.setUsuario(usuario);
-        }
+        con.setUsuario(usuario);
+        con.setNumeroTelefone(numeroTele);
     }
 
     public void listarConta(Conta conta) {
@@ -79,12 +76,11 @@ public class MenuContas {
                 2 - Exibir por id
                 3 - Exibir numero
                 4 - Procurar telefone por ddd
-                5 - Exibir todas as contas maior que um valor x
-                6 - Exibir o total de transações ocorridas
-                7 - Exibir o total de contas existentes
-                8 - Exibir todas as contas com desconto recorrente
-                9 - Exibir todos os numeros de telefone
-                10 - Sair
+                5 - Exibir o total de transações ocorridas
+                6 - Exibir o total de contas existentes
+                7 - Exibir todas as contas com desconto recorrente
+                8 - Exibir todos os numeros de telefone
+                9 - Sair
                 """;
 
         String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -107,11 +103,11 @@ public class MenuContas {
             case INSERIR:
                 conta = new Conta();
                 obterConta(conta);
-                baseConta.save(conta);
+                if(conta != null) baseConta.save(conta);
                 break;
             case EXIBIR_POR_ID:
                 int idConta = Integer.parseInt(JOptionPane.showInputDialog("Id da conta"));
-                conta = baseConta.findByidUsuario(idConta);
+                conta = baseConta.findByidConta(idConta);
                 listarConta(conta);
                 break;
             case EXIBIR_POR_NUMERO:
@@ -123,11 +119,6 @@ public class MenuContas {
                 String ddd = JOptionPane.showInputDialog("Digite o ddd de sua região");
                 contas = baseConta.consultaPorDdd(ddd);
                 listarContas(contas);
-            case EXIBIR_MAIOR_VALOR_X:
-                double valor = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor minimo"));
-                contas = baseConta.valoresNaContaMaior(valor);
-                listarContas(contas);
-                break;
             case EXIBIR_TOTAL_TRANSACOES:
                 conta = baseConta.findContaComMaiorValorTotal();
                 listarConta(conta);

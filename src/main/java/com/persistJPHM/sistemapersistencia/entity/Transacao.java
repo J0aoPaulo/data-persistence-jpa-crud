@@ -33,7 +33,7 @@ public class Transacao {
     private double valorTransacao;
 
     public String toString() {
-        String s = "Transacao(idTran=" + this.idTran + ", idConta=" + this.conta.getIdUsuario() + ", dataTransacao=" + this.dataTransacao + ", valorTransacao=" + this.valorTransacao + ")";
+        String s = "Transacao(idTran=" + this.idTran + ", idConta=" + this.conta.getIdConta() + ", dataTransacao=" + this.dataTransacao + ", valorTransacao=" + this.valorTransacao + ")";
         return s;
     }
 }
