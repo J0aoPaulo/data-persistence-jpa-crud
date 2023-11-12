@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EntityScan("com/persistJPHM/sistemapersistencia.entity")
 @EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO")
-public class MenuPrincipal implements CommandLineRunner {
+public class 	MenuPrincipal implements CommandLineRunner {
 	@Autowired
 	MenuUsuarios menuUsuarios;
 	public static void main(String[] args) {

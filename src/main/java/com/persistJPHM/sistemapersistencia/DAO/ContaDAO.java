@@ -18,21 +18,21 @@ public interface ContaDAO extends JpaRepository<Conta, Integer> {
 
     //Consultar telefones com ddd específico -
     @Query("SELECT c FROM Conta c WHERE SUBSTRING(c.numeroTelefone, 1, 2) = :ddd")
-    public Conta consultaPorDdd(@Param("ddd") String ddd);
+    public List<Conta> consultaPorDdd(@Param("ddd") String ddd);
 
     //Mostra os valores nas contas que são maiores que um valor x -
     @Query("SELECT c FROM Conta c WHERE c.valorTotalConta() > :valorLimite")
-    public Conta valoresNaContaMaior(@Param("valorLimite") double valorLimite);
+    public List<Conta> valoresNaContaMaior(@Param("valorLimite") double valorLimite);
 
-    //Consultar a conta com o maior valor total -
+    //Consultar total de todas as transações -
     @Query(value = "SELECT c.* FROM Conta c" +
-            "ORDER BY c.valorTotalConta DESC LIMIT 1",
+            " ORDER BY c.totalNaConta DESC LIMIT 1",
             nativeQuery = true)
     public Conta findContaComMaiorValorTotal();
 
     //Listar todas as contas existentes -
     @Query(value = "Select c FROM Conta c", nativeQuery = true)
-    public Conta consultarTodasContas();
+    public List<Conta> consultarTodasContas();
 
     //Consultar todas as contas com um desconto recorrente nelas -
     @Query(name = "consultarContasComDescontos")
@@ -40,5 +40,5 @@ public interface ContaDAO extends JpaRepository<Conta, Integer> {
 
     //Listar todos os numeros de telefone -
     @Query(name = "listarTodosTelefones")
-    public List<String> consultarTodosTelefones();
+    public List<Conta> consultarTodosTelefones();
 }

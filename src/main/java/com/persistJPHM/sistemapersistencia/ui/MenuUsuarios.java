@@ -95,8 +95,9 @@ public class MenuUsuarios {
 
     private void realizarAcao(OpcaoMenu opcao) {
         Usuario usu;
-        List<Usuario> usuarios;
         String cpf;
+        List<Usuario> usuarios;
+
         switch (opcao) {
             case INSERIR:
                 usu = new Usuario();

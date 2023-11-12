@@ -2,6 +2,8 @@ package com.persistJPHM.sistemapersistencia.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NamedQueries({
@@ -26,7 +28,7 @@ public class Transacao {
 
     @NonNull
     @Column(name = "data_transacao", nullable = false)
-    Date dataTransacao;
+    LocalDateTime dataTransacao;
 
     @Column(name = "valor_transacao")
     private double valorTransacao;

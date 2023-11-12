@@ -1,6 +1,6 @@
 ```mermaid
 classDiagram
-Usuario "1" -- "1" Conta
+Usuario "1" *-- "1" Conta
 Conta "1" *-- "*" Transacao
 Conta "1" *-- "*" desconto_recorrente
 
