@@ -23,7 +23,7 @@ public class 	MenuPrincipal implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		menuUsuarios.menu();
-		// menuTransacoes.menu();
+		//menuUsuarios.menu();
+		menuTransacoes.menu();
 	}
 }

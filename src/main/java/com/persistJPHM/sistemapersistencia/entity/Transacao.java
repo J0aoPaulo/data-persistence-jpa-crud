@@ -27,7 +27,7 @@ public class Transacao {
 
     @NonNull
     @Column(name = "data_transacao", nullable = false)
-    LocalDateTime dataTransacao;
+    Date dataTransacao;
 
     @Column(name = "valor_transacao")
     private double valorTransacao;
