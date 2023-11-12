@@ -14,9 +14,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DescontoRecorrenteDAO extends JpaRepository<DescontoRecorrente, Integer> {
   // ----------------------------- JPQL ----------------------------- //
-  // busca e ordena de forma crescentes os descontos pelo valor
-  @Query("SELECT dr FROM DescontoRecorrente dr ORDER BY dr.valorDesconto ASC")
-  public List<DescontoRecorrente> findAllOrderByValorDescontoAsc();
 
   // busca todos os descontos de uma conta específica
   @Query("SELECT dr FROM DescontoRecorrente dr WHERE dr.descontoConta = :conta")
@@ -34,18 +31,16 @@ public interface DescontoRecorrenteDAO extends JpaRepository<DescontoRecorrente,
 
   
   // ------------------------- Named Query ------------------------- //
-  // busca uma lista de descontos ordenadas por data
-  @Query(name = "findAllOrderByDataDescontoAsc")
-  List<DescontoRecorrente> findAllOrderByDataDescontoAsc();
 
   // busca uma lista de de descontos com base em um intervalo de valores específicos
   @Query(name = "findAllByValorDescontoBetween")
   List<DescontoRecorrente> findAllByValorDescontoBetween(@Param("minValor") double minValor, @Param("maxValor") double maxValor);
 
   // ---------------------- por nome do método ---------------------- //
-  // Contagem total de descontos cadastrados
-  long countBy();
 
   // Maior desconto já ocorrido
   DescontoRecorrente findTopByOrderByValorDescontoDesc();
+
+  // Menor desconto já ocorrido
+  DescontoRecorrente findTopByOrderByValorDescontoAsc();
 }

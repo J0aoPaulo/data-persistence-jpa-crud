@@ -27,7 +27,7 @@ public class Conta {
     private Usuario usuario;
 
     private String numeroTelefone;
-
+  
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     private List<Transacao> transacoes;
 

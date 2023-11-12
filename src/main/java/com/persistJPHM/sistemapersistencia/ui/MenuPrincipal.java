@@ -1,5 +1,7 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
+import javax.swing.JOptionPane;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +14,7 @@ import javax.swing.*;
 @SpringBootApplication
 @EntityScan("com/persistJPHM/sistemapersistencia.entity")
 @EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO")
-public class 	MenuPrincipal implements CommandLineRunner {
+public class MenuPrincipal implements CommandLineRunner {
 	@Autowired
 	MenuUsuarios menuUsuarios;
 
@@ -20,7 +22,9 @@ public class 	MenuPrincipal implements CommandLineRunner {
 	MenuTransacoes menuTransacoes;
 
 	@Autowired
+
 	MenuContas menuContas;
+
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(MenuPrincipal.class);
 		builder.headless(false).run(args);

@@ -3,13 +3,13 @@ package com.persistJPHM.sistemapersistencia.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
 
 @NamedQueries({
-    @NamedQuery(name = "findAllOrderByDataDescontoAsc", query = "SELECT dr FROM DescontoRecorrente dr ORDER BY dr.dataDesconto ASC"),
     @NamedQuery(name = "findAllByValorDescontoBetween", query = "SELECT dr FROM DescontoRecorrente dr WHERE dr.valorDesconto BETWEEN :minValor AND :maxValor")
 })
 
@@ -17,6 +17,7 @@ import java.util.Date;
 @Table(name = "desconto_recorrente")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 @Data
 @ToString
 public class DescontoRecorrente {

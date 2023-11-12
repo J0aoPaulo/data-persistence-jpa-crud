@@ -27,7 +27,6 @@ public class MenuTransacoes {
         EXIBIR_POR_ID,
         EXIBIR_TODOS,
         EXIBIR_POR_INTERVALO_VALOR,
-        LISTAR_TODAS,
         NUMERO_TRANSACOES,
         EXIBIR_POR_INTERVALO_DATA,
         CALCULAR_MEDIA_VALOR,
@@ -92,13 +91,12 @@ public class MenuTransacoes {
                 4 - Exibir por ID
                 5 - Exibir todos
                 6 - Exibir por intervalo de valor
-                7 - Listar todas
-                8 - Número de transacoes
-                9 - Exibir por intervalo de data
-                10 - Calcular média do valor
-                11 - Exibir valor mais baixo
-                12 - Exibir valor mais alto
-                13 - Sair
+                7 - Número de transacoes
+                8 - Exibir por intervalo de data
+                9 - Calcular média do valor
+                10 - Exibir valor mais baixo
+                11 - Exibir valor mais alto
+                12 - Sair
                 """;
 
         String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -154,9 +152,6 @@ public class MenuTransacoes {
                 double maxValue = Double.parseDouble(JOptionPane.showInputDialog("Valor Máximo"));
                 transacoes = transacaoDAO.buscaPorContaId(minValue, maxValue);
                 listarTransacoes(transacoes);
-                break;
-            case LISTAR_TODAS:
-                listarTransacoes(transacaoDAO.listALL());
                 break;
             case NUMERO_TRANSACOES:
                 int numTransacoes = transacaoDAO.numTransacoes();
