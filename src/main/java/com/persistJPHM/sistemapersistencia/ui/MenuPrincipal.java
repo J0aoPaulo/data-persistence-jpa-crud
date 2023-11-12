@@ -16,6 +16,9 @@ public class 	MenuPrincipal implements CommandLineRunner {
 
 	@Autowired
 	MenuTransacoes menuTransacoes;
+
+	@Autowired
+	MenuDesconto menuDesconto;
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(MenuPrincipal.class);
 		builder.headless(false).run(args);
@@ -24,6 +27,7 @@ public class 	MenuPrincipal implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		//menuUsuarios.menu();
-		menuTransacoes.menu();
+		// menuTransacoes.menu();
+		menuDesconto.menu();
 	}
 }
