@@ -20,12 +20,6 @@ public interface ContaDAO extends JpaRepository<Conta, Integer> {
     @Query("SELECT c FROM Conta c WHERE SUBSTRING(c.numeroTelefone, 1, 2) = :ddd")
     public List<Conta> consultaPorDdd(@Param("ddd") String ddd);
 
-    //Consultar total de todas as transações -
-    @Query(value = "SELECT c.* FROM Conta c" +
-            " ORDER BY c.totalNaConta() DESC LIMIT 1",
-            nativeQuery = true)
-    public Conta findContaComMaiorValorTotal();
-
     //Listar todas as contas existentes -
     @Query(value = "SELECT * FROM Conta", nativeQuery = true)
     public List<Conta> consultarTodasContas();

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Component
@@ -21,10 +20,10 @@ public class MenuContas {
         EXIBIR_POR_ID,
         EXIBIR_POR_NUMERO,
         EXIBIR_POR_DDD,
-        EXIBIR_TOTAL_TRANSACOES,
         EXIBIR_TOTAL_CONTAS,
         EXIBIR_CONTAS_DESCONTO,
         EXIBIR_TODOS_NUMEROS,
+        EXIBIR_TODAS_CONTAS,
         SAIR
     }
 
@@ -48,6 +47,7 @@ public class MenuContas {
     }
 
     public void listarContas(List<Conta> contas) {
+
         StringBuilder listagem = new StringBuilder();
         for(Conta conta : contas) {
             listagem.append(conta.toString()).append("\n");
@@ -75,11 +75,10 @@ public class MenuContas {
                 2 - Exibir por id
                 3 - Exibir numero
                 4 - Procurar telefone por ddd
-                5 - Exibir o total de transações ocorridas
-                6 - Exibir o total de contas existentes
-                7 - Exibir todas as contas com desconto recorrente
-                8 - Exibir todos os numeros de telefone
-                9 - Sair
+                5 - Listar todas as contas
+                6 - Exibir todas as contas com desconto recorrente
+                7 - Exibir todos os numeros de telefone
+                8 - Sair
                 """;
 
         String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -103,6 +102,8 @@ public class MenuContas {
                 conta = new Conta();
                 obterConta(conta);
                 if(conta != null) baseConta.save(conta);
+                else JOptionPane.showMessageDialog(null,
+                        "Digite um usuario existente");
                 break;
             case EXIBIR_POR_ID:
                 int idConta = Integer.parseInt(JOptionPane.showInputDialog("Id da conta"));
@@ -118,9 +119,6 @@ public class MenuContas {
                 String ddd = JOptionPane.showInputDialog("Digite o ddd de sua região");
                 contas = baseConta.consultaPorDdd(ddd);
                 listarContas(contas);
-            case EXIBIR_TOTAL_TRANSACOES:
-                conta = baseConta.findContaComMaiorValorTotal();
-                listarConta(conta);
                 break;
             case EXIBIR_TOTAL_CONTAS:
                 contas = baseConta.consultarTodasContas();
