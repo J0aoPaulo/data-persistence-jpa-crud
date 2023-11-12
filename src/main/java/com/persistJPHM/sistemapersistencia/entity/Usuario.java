@@ -31,13 +31,4 @@ public class Usuario {
     @ToString.Exclude
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Conta conta;
-
-    //@Override
-    /*public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Id: ").append(idUsuario);
-        sb.append("Nome: ").append(nome);
-        sb.append("CPF: ").append(cpf).append("\n");
-        return sb.toString();
-    }*/
 }

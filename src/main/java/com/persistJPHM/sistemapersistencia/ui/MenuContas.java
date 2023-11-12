@@ -31,13 +31,21 @@ public class MenuContas {
     @Autowired
     private UsuarioDAO baseUsuario;
 
-    public void obterConta(Conta con) {
+    @Autowired
+    private MenuTransacoes menuTransacoes;
+
+    public void obterESalvarConta(Conta con) {
         String numeroTele = JOptionPane.showInputDialog("Numero de telefone associado a conta: ", con.getNumeroTelefone());
         int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do usuario que será associado a conta"));
 
-        Usuario usuario = baseUsuario.findByIdUsuario(id);
-        con.setUsuario(usuario);
         con.setNumeroTelefone(numeroTele);
+        Usuario usuario = baseUsuario.findByIdUsuario(id);
+
+        if(usuario == null) JOptionPane.showMessageDialog(null, "Digite um usuario existente");
+        else con.setUsuario(usuario);
+
+        baseConta.save(con);
+        menuTransacoes.menu();
     }
 
     public void listarConta(Conta conta) {
@@ -105,10 +113,7 @@ public class MenuContas {
         switch (opcao) {
             case INSERIR:
                 conta = new Conta();
-                obterConta(conta);
-                if(conta != null) baseConta.save(conta);
-                else JOptionPane.showMessageDialog(null,
-                        "Digite um usuario existente");
+                obterESalvarConta(conta);
                 break;
             case EXIBIR_POR_ID:
                 int idConta = Integer.parseInt(JOptionPane.showInputDialog("Id da conta"));
