@@ -14,14 +14,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString
-
 public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTran;
 
     @ManyToOne
+    @ToString.Exclude
     private Conta conta;
 
     @NonNull
@@ -30,4 +29,9 @@ public class Transacao {
 
     @Column(name = "valor_transacao")
     private double valorTransacao;
+
+    public String toString() {
+        String s = "Transacao(idTran=" + this.idTran + ", idConta=" + this.conta.getIdUsuario() + ", dataTransacao=" + this.dataTransacao + ", valorTransacao=" + this.valorTransacao + ")";
+        return s;
+    }
 }

@@ -47,9 +47,6 @@ public interface TransacaoDAO extends JpaRepository<Transacao, Integer> {
 
   // ---------------------- por nome do método ---------------------- //
 
-  // busca uma lista de transações por data
-  public List<Transacao> findByDataTransacaoBetween(Date startDate, Date endDate);
-
   // busca a transação com o valor mais baixo
   public Transacao findTopByOrderByValorTransacaoAsc();
 
