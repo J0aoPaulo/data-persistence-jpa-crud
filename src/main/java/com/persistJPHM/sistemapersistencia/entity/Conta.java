@@ -19,17 +19,15 @@ import java.util.List;
 @ToString
 public class Conta {
     @Id
-    private Integer idUsuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idConta;
 
     @OneToOne
-    @JoinColumn(name = "idUsuario")
-    @MapsId
+    @PrimaryKeyJoinColumn
     private Usuario usuario;
 
     private String numeroTelefone;
-
-
-    @ToString.Exclude
+  
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     private List<Transacao> transacoes;
 

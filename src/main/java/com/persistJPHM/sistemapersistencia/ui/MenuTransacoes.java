@@ -46,7 +46,7 @@ public class MenuTransacoes {
       Date dataTransacao = new Date();
       double valorTransacao = Double.parseDouble(JOptionPane.showInputDialog("Valor da Transacao"));
   
-      Conta conta = contaDAO.findByidUsuario(idConta);
+      Conta conta = contaDAO.findByidConta(idConta);
   
       if (conta != null) {
           transacao.setConta(conta);

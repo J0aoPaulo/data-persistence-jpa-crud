@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import javax.swing.*;
+
 @SpringBootApplication
 @EntityScan("com/persistJPHM/sistemapersistencia.entity")
 @EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO")
@@ -20,7 +22,8 @@ public class MenuPrincipal implements CommandLineRunner {
 	MenuTransacoes menuTransacoes;
 
 	@Autowired
-	MenuDesconto menuDesconto;
+
+	MenuContas menuContas;
 
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(MenuPrincipal.class);
@@ -28,21 +31,22 @@ public class MenuPrincipal implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 		int op = 0;
 
-		while (op < 3) {
-			op = Integer.parseInt(JOptionPane.showInputDialog(null, "1 - Usuarios\n2 - Transacoes\n3 - Descontos"));
+		while(op < 4) {
+			op = Integer.parseInt(JOptionPane.showInputDialog(null, "1 - Usuarios\n2 - Conta\n3 - Transacoes\n"));
 
 			switch (op) {
 				case 1:
 					menuUsuarios.menu();
 					break;
 				case 2:
-					menuTransacoes.menu();
+					menuContas.menu();
 					break;
 				case 3:
-					 menuDesconto.menu();
+					menuTransacoes.menu();
+					break;
 				default:
 					break;
 			}
