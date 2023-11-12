@@ -5,9 +5,6 @@ import lombok.*;
 import java.util.List;
 
 @NamedQueries({
-        @NamedQuery(name = "consultarContasComDescontos",
-        query = "SELECT c FROM Conta c LEFT JOIN FETCH c.dr " +
-                "WHERE c.dr IS NOT EMPTY"),
         @NamedQuery(name = "listarTodosTelefones",
         query = "SELECT c.numeroTelefone FROM Conta c")
 })

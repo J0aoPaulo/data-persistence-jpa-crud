@@ -24,11 +24,7 @@ public interface ContaDAO extends JpaRepository<Conta, Integer> {
     @Query(value = "SELECT * FROM Conta", nativeQuery = true)
     public List<Conta> consultarTodasContas();
 
-    //Consultar todas as contas com um desconto recorrente nelas -
-    @Query(name = "consultarContasComDescontos")
-    public List<Conta> consultarContasComDesconto();
-
     //Listar todos os numeros de telefone -
     @Query(name = "listarTodosTelefones")
-    public List<Conta> consultarTodosTelefones();
+    public List<String> consultarTodosTelefones();
 }

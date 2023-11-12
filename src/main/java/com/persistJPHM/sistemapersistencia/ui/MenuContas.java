@@ -21,9 +21,7 @@ public class MenuContas {
         EXIBIR_POR_NUMERO,
         EXIBIR_POR_DDD,
         EXIBIR_TOTAL_CONTAS,
-        EXIBIR_CONTAS_DESCONTO,
         EXIBIR_TODOS_NUMEROS,
-        EXIBIR_TODAS_CONTAS,
         SAIR
     }
 
@@ -47,12 +45,20 @@ public class MenuContas {
     }
 
     public void listarContas(List<Conta> contas) {
-
         StringBuilder listagem = new StringBuilder();
         for(Conta conta : contas) {
             listagem.append(conta.toString()).append("\n");
         }
         JOptionPane.showMessageDialog(null, listagem.isEmpty() ? "Nenhuma conta encontrada" : listagem);
+    }
+
+    public void listarTelefone(List<String> telefones) {
+        StringBuilder listagemTele = new StringBuilder();
+        for(String numero: telefones) {
+            listagemTele.append(numero).append("\n");
+        }
+        JOptionPane.showMessageDialog(null,
+                listagemTele.isEmpty() ? "Nenhum telefone encontrado" : listagemTele);
     }
 
     public void menu() {
@@ -76,9 +82,8 @@ public class MenuContas {
                 3 - Exibir numero
                 4 - Procurar telefone por ddd
                 5 - Listar todas as contas
-                6 - Exibir todas as contas com desconto recorrente
-                7 - Exibir todos os numeros de telefone
-                8 - Sair
+                6 - Exibir todos os numeros de telefone
+                7 - Sair
                 """;
 
         String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -124,13 +129,9 @@ public class MenuContas {
                 contas = baseConta.consultarTodasContas();
                 listarContas(contas);
                 break;
-            case EXIBIR_CONTAS_DESCONTO:
-                contas = baseConta.consultarContasComDesconto();
-                listarContas(contas);
-                break;
             case EXIBIR_TODOS_NUMEROS:
-                contas = baseConta.consultarTodosTelefones();
-                listarContas(contas);
+                List<String> numeros = baseConta.consultarTodosTelefones();
+                listarTelefone(numeros);
                 break;
             case SAIR:
                 break;
