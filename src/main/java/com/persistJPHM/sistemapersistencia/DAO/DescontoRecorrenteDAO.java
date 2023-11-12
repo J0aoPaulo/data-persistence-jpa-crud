@@ -31,9 +31,6 @@ public interface DescontoRecorrenteDAO extends JpaRepository<DescontoRecorrente,
 
   
   // ------------------------- Named Query ------------------------- //
-  // busca uma lista de descontos ordenadas por data
-  @Query(name = "findAllOrderByDataDescontoAsc")
-  List<DescontoRecorrente> findAllOrderByDataDescontoAsc();
 
   // busca uma lista de de descontos com base em um intervalo de valores específicos
   @Query(name = "findAllByValorDescontoBetween")
