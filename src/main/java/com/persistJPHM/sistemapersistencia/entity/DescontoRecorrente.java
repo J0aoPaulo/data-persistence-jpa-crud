@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.Date;
 
@@ -19,7 +18,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Data
-@ToString
 public class DescontoRecorrente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,5 +38,12 @@ public class DescontoRecorrente {
             restanteConta = descontoConta.valorTotalConta() - valorDesconto;
         }
         return restanteConta;
+    }
+
+    @Override
+    public String toString() {
+        return "DescontoRecorrente{idDesconto=" + idDesconto + ", valorDesconto=" + valorDesconto +
+                ", id da conta=" + (descontoConta != null ? descontoConta.getIdConta() : "null") +
+                ", dataDesconto=" + dataDesconto + "}";
     }
 }

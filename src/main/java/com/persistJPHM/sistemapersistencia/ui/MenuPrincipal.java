@@ -9,8 +9,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import javax.swing.*;
-
 @SpringBootApplication
 @EntityScan("com/persistJPHM/sistemapersistencia.entity")
 @EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO")
@@ -26,6 +24,7 @@ public class MenuPrincipal implements CommandLineRunner {
 
 	@Autowired
 	MenuDesconto menuDesconto;
+
 
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(MenuPrincipal.class);

@@ -19,7 +19,6 @@ public class MenuContas {
         INSERIR,
         EXIBIR_POR_ID,
         EXIBIR_POR_NUMERO,
-        EXIBIR_POR_DDD,
         EXIBIR_TOTAL_CONTAS,
         EXIBIR_TODOS_NUMEROS,
         SAIR
@@ -88,11 +87,10 @@ public class MenuContas {
                 Menu Contas
                 1 - Inserir
                 2 - Exibir por id
-                3 - Exibir numero
-                4 - Procurar telefone por ddd
-                5 - Listar todas as contas
-                6 - Exibir todos os numeros de telefone
-                7 - Sair
+                3 - Exibir por numero de telefone   
+                4 - Listar todas as contas
+                5 - Exibir todos os numeros de telefone
+                6 - Sair
                 """;
 
         String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -124,11 +122,6 @@ public class MenuContas {
                 String numeroTele = JOptionPane.showInputDialog("Numero de telefone");
                 conta = baseConta.findByNumeroTelefone(numeroTele);
                 listarConta(conta);
-                break;
-            case EXIBIR_POR_DDD:
-                String ddd = JOptionPane.showInputDialog("Digite o ddd de sua região");
-                contas = baseConta.consultaPorDdd(ddd);
-                listarContas(contas);
                 break;
             case EXIBIR_TOTAL_CONTAS:
                 contas = baseConta.consultarTodasContas();

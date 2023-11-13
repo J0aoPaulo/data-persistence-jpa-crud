@@ -3,7 +3,6 @@ package com.persistJPHM.sistemapersistencia.DAO;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,10 +14,6 @@ public interface ContaDAO extends JpaRepository<Conta, Integer> {
 
     //Pesquisar numero de telefone específico -
     Conta findByNumeroTelefone(String numero);
-
-    //Consultar telefones com ddd específico -
-    @Query("SELECT c FROM Conta c WHERE SUBSTRING(c.numeroTelefone, 1, 2) = :ddd")
-    public List<Conta> consultaPorDdd(@Param("ddd") String ddd);
 
     //Listar todas as contas existentes -
     @Query(value = "SELECT * FROM Conta", nativeQuery = true)
