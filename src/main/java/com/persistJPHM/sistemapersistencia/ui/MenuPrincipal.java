@@ -22,8 +22,10 @@ public class MenuPrincipal implements CommandLineRunner {
 	MenuTransacoes menuTransacoes;
 
 	@Autowired
-
 	MenuContas menuContas;
+
+	@Autowired
+	MenuDesconto menuDesconto;
 
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(MenuPrincipal.class);
@@ -34,8 +36,8 @@ public class MenuPrincipal implements CommandLineRunner {
 	public void run(String... args) {
 		int op = 0;
 
-		while(op < 4) {
-			op = Integer.parseInt(JOptionPane.showInputDialog(null, "1 - Usuarios\n2 - Conta\n3 - Transacoes\n"));
+		while(op < 5) {
+			op = Integer.parseInt(JOptionPane.showInputDialog(null, "1 - Usuarios\n2 - Conta\n3 - Transacoes\n4 - Descontos"));
 
 			switch (op) {
 				case 1:
@@ -47,6 +49,8 @@ public class MenuPrincipal implements CommandLineRunner {
 				case 3:
 					menuTransacoes.menu();
 					break;
+				case 4:
+					menuDesconto.menu();
 				default:
 					break;
 			}

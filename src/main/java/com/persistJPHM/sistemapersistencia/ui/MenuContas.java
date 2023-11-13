@@ -34,17 +34,18 @@ public class MenuContas {
     @Autowired
     private MenuTransacoes menuTransacoes;
 
-    public void obterESalvarConta(Conta con) {
-        String numeroTele = JOptionPane.showInputDialog("Numero de telefone associado a conta: ", con.getNumeroTelefone());
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do usuario que será associado a conta"));
+    public void obterESalvarConta() {
+        String numeroTele = JOptionPane.showInputDialog(null, "Numero de telefone associado a conta: ");
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o id do usuario que será associado a conta"));
 
-        con.setNumeroTelefone(numeroTele);
         Usuario usuario = baseUsuario.findByIdUsuario(id);
 
-        if(usuario == null) JOptionPane.showMessageDialog(null, "Digite um usuario existente");
-        else con.setUsuario(usuario);
-
-        baseConta.save(con);
+        if (usuario == null) {
+            JOptionPane.showMessageDialog(null, "Digite um usuário existente");
+        } else {
+            Conta con = new Conta(id, usuario, numeroTele, null, null);
+            baseConta.save(con);
+        }
         menuTransacoes.menu();
     }
 
@@ -54,7 +55,7 @@ public class MenuContas {
 
     public void listarContas(List<Conta> contas) {
         StringBuilder listagem = new StringBuilder();
-        for(Conta conta : contas) {
+        for (Conta conta : contas) {
             listagem.append(conta.toString()).append("\n");
         }
         JOptionPane.showMessageDialog(null, listagem.isEmpty() ? "Nenhuma conta encontrada" : listagem);
@@ -62,7 +63,7 @@ public class MenuContas {
 
     public void listarTelefone(List<String> telefones) {
         StringBuilder listagemTele = new StringBuilder();
-        for(String numero: telefones) {
+        for (String numero : telefones) {
             listagemTele.append(numero).append("\n");
         }
         JOptionPane.showMessageDialog(null,
@@ -79,7 +80,7 @@ public class MenuContas {
                 log.error(e.getMessage(), e);
                 JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             }
-        } while(opcao != OpcaoMenu.SAIR);
+        } while (opcao != OpcaoMenu.SAIR);
     }
 
     public OpcaoMenu obterOpcaoMenu() {
@@ -112,8 +113,7 @@ public class MenuContas {
 
         switch (opcao) {
             case INSERIR:
-                conta = new Conta();
-                obterESalvarConta(conta);
+                obterESalvarConta();
                 break;
             case EXIBIR_POR_ID:
                 int idConta = Integer.parseInt(JOptionPane.showInputDialog("Id da conta"));
