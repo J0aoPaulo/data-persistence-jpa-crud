@@ -1,7 +1,6 @@
 package com.persistJPHM.sistemapersistencia.DAO;
 
 import java.util.List;
-import java.util.Set;
 
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,5 @@
-```mermaid
-classDiagram
-Usuario "1" *-- "1" Conta
+```classDiagram
+Usuario "1" -- "1" Conta
 Conta "1" *-- "*" Transacao
 Conta "1" *-- "*" desconto_recorrente
 
@@ -28,6 +27,6 @@ class desconto_recorrente {
 -dataDesconto : Date
 -valorDesconto : double
 -restanteConta : double
-+debitarConta() : double
++debitarConta() double
 }
 ```

@@ -16,11 +16,9 @@ import java.util.List;
 @ToString
 public class Conta {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idConta;
 
     @OneToOne
-    @PrimaryKeyJoinColumn
     private Usuario usuario;
 
     private String numeroTelefone;
