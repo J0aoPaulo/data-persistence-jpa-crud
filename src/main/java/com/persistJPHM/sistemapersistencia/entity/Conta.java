@@ -37,4 +37,21 @@ public class Conta {
         }
         return totalNaConta;
     }
+
+    public String toStringTodasContas() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Conta{")
+                .append("idConta=").append(idConta)
+                .append(", usuario=").append(usuario)
+                .append(", numeroTelefone='").append(numeroTelefone).append('\'')
+                .append(", transacoes=[");
+
+        if (transacoes != null) {
+            for (Transacao tr : transacoes) {
+                sb.append("{valorTransacao=").append(tr.getValorTransacao()).append("}, ");
+            }
+        }
+        sb.append("]}");
+        return sb.toString();
+    }
 }
