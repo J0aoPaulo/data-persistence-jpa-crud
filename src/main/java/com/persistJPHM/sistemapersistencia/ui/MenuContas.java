@@ -55,7 +55,7 @@ public class MenuContas {
     public void listarContas(List<Conta> contas) {
         StringBuilder listagem = new StringBuilder();
         for (Conta conta : contas) {
-            listagem.append(conta.toString()).append("\n");
+            listagem.append(conta.toStringTodasContas()).append("\n");
         }
         JOptionPane.showMessageDialog(null, listagem.isEmpty() ? "Nenhuma conta encontrada" : listagem);
     }
