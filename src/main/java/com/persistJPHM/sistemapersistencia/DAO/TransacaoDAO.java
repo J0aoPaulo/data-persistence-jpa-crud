@@ -11,13 +11,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TransacaoDAO extends JpaRepository<Transacao, Integer> {
+public interface TransacaoDAO extends JpaRepository<Transacao, String> {
 
   // ----------------------------- JPQL ----------------------------- //
 
   // busca uma transacao por id
   @Query("SELECT t FROM Transacao t WHERE t.idTran = :id") 
-  public Transacao buscaPorId(Integer id);
+  public Transacao buscaPorId(String id);
   
   // busca uma lista de transacoes em um intervalor de valor
   @Query("SELECT t FROM Transacao t WHERE t.valorTransacao BETWEEN :minValue AND :maxValue") 

@@ -2,6 +2,7 @@ package com.persistJPHM.sistemapersistencia.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @NamedQueries({
         @NamedQuery(name = "usuarioEntreID",
@@ -9,6 +10,7 @@ import lombok.*;
         @NamedQuery(name = "consultaPorNome",
         query = "SELECT u FROM Usuario u WHERE u.nome = :nome")})
 
+@Document(collection = "usuarios")
 @Entity
 @Table(name = "Usuario")
 @AllArgsConstructor
@@ -18,7 +20,7 @@ import lombok.*;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idUsuario;
+    private String idUsuario;
 
     @NonNull
     @Column(nullable = false)

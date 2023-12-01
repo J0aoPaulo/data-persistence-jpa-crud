@@ -12,7 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DescontoRecorrenteDAO extends JpaRepository<DescontoRecorrente, Integer> {
+public interface DescontoRecorrenteDAO extends JpaRepository<DescontoRecorrente, String> {
   // ----------------------------- JPQL ----------------------------- //
 
   // busca todos os descontos de uma conta específica

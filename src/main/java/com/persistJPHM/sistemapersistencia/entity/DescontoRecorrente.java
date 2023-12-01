@@ -5,13 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 @NamedQueries({
     @NamedQuery(name = "findAllByValorDescontoBetween", query = "SELECT dr FROM DescontoRecorrente dr WHERE dr.valorDesconto BETWEEN :minValor AND :maxValor")
 })
-
+@Document(collection = "descontos")
 @Entity
 @Table(name = "desconto_recorrente")
 @AllArgsConstructor
@@ -21,7 +22,7 @@ import java.util.Date;
 public class DescontoRecorrente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDesconto;
+    private String idDesconto;
 
     @Column(name = "valor_desconto")
     private double valorDesconto;

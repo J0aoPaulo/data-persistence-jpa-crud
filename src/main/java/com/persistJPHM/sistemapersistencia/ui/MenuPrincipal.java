@@ -2,7 +2,13 @@ package com.persistJPHM.sistemapersistencia.ui;
 
 
 import com.persistJPHM.sistemapersistencia.entity.Conta;
-import com.persistJPHM.sistemapersistencia.repository.ContaRepository;
+import com.persistJPHM.sistemapersistencia.entity.DescontoRecorrente;
+import com.persistJPHM.sistemapersistencia.entity.Transacao;
+import com.persistJPHM.sistemapersistencia.entity.Usuario;
+import com.persistJPHM.sistemapersistencia.repository.ContaMongoDao;
+import com.persistJPHM.sistemapersistencia.repository.DescontoMongoDao;
+import com.persistJPHM.sistemapersistencia.repository.TransacaoMongoDao;
+import com.persistJPHM.sistemapersistencia.repository.UsuarioMongoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,26 +18,37 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+import javax.swing.*;
+
 @SpringBootApplication
 @EntityScan("com/persistJPHM/sistemapersistencia.entity")
 @EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO")
 @ComponentScan("com.persistJPHM.sistemapersistencia")
 @EnableMongoRepositories("com.persistJPHM.sistemapersistencia.repository")
 public class MenuPrincipal implements CommandLineRunner {
-	//@Autowired
-	//MenuUsuarios menuUsuarios;
-
-	//@Autowired
-	//MenuTransacoes menuTransacoes;
-
-	//@Autowired
-	//MenuContas menuContas;
-
-	//@Autowired
-	//MenuDesconto menuDesconto
+	@Autowired
+	MenuUsuarios menuUsuarios;
 
 	@Autowired
-	ContaRepository contaRepository;
+	MenuTransacoes menuTransacoes;
+
+	@Autowired
+	MenuContas menuContas;
+
+	@Autowired
+	MenuDesconto menuDesconto;
+
+	@Autowired
+	ContaMongoDao contaMongoDao;
+
+	@Autowired
+	DescontoMongoDao descontoMongoDao;
+
+	@Autowired
+	TransacaoMongoDao transacaoMongoDao;
+
+	@Autowired
+	UsuarioMongoDao usuarioMongoDao;
 
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(MenuPrincipal.class);
@@ -40,11 +57,15 @@ public class MenuPrincipal implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		contaRepository.save(new Conta());
-
-		/*int op = 0;
+		int op = 0;
 
 		while (op < 5) {
+			//contaMongoDao.save(new Conta());
+			//contaMongoDao.findByIdNativeQuery("0");
+			//contaMongoDao.findByNumeroTelefoneJPQL("9999999");
+			//descontoMongoDao.save(new DescontoRecorrente());
+			//transacaoMongoDao.save(new Transacao());
+			//usuarioMongoDao.save(new Usuario());
 			op = Integer.parseInt(JOptionPane.showInputDialog(null, "1 - Usuarios\n2 - Conta\n3 - Transacoes\n4 - Descontos"));
 
 			switch (op) {
@@ -62,6 +83,6 @@ public class MenuPrincipal implements CommandLineRunner {
 				default:
 					break;
 			}
-		}*/
+		}
 	}
 }

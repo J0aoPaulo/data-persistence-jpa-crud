@@ -38,7 +38,7 @@ public class MenuDesconto {
   private ContaDAO contaDAO;
 
   public void obterDescontoRecorrente(DescontoRecorrente descontoRecorrente) {
-    int idConta = Integer.parseInt(JOptionPane.showInputDialog("ID da Conta"));
+    String idConta = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID da Conta")));
     double valorDesconto = Double.parseDouble(JOptionPane.showInputDialog("Valor do Desconto"));
 
     Conta conta = contaDAO.findById(idConta).orElse(null);
@@ -111,15 +111,15 @@ public class MenuDesconto {
   private void realizarAcao(OpcaoMenu opcao) throws HeadlessException, ParseException {
     DescontoRecorrente descontoRecorrente;
     List<DescontoRecorrente> descontosRecorrentes;
-    Integer id;
+    String id;
     switch (opcao) {
       case INSERIR:
         descontoRecorrente = new DescontoRecorrente();
         obterDescontoRecorrente(descontoRecorrente);
         break;
       case ATUALIZAR_POR_ID:
-        id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Desconto Recorrente a ser alterado"));
-        descontoRecorrente = descontoRecorrenteDAO.findById(id).orElse(null);
+        id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Desconto Recorrente a ser alterado")));
+        descontoRecorrente = descontoRecorrenteDAO.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
         if (descontoRecorrente != null) {
           obterDescontoRecorrente(descontoRecorrente);
           descontoRecorrenteDAO.save(descontoRecorrente);
@@ -129,8 +129,8 @@ public class MenuDesconto {
         }
         break;
       case REMOVER_POR_ID:
-        id = Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente"));
-        descontoRecorrente = descontoRecorrenteDAO.findById(id).orElse(null);
+        id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente")));
+        descontoRecorrente = descontoRecorrenteDAO.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
         if (descontoRecorrente != null) {
           descontoRecorrenteDAO.deleteById(descontoRecorrente.getIdDesconto());
         } else {
@@ -139,15 +139,15 @@ public class MenuDesconto {
         }
         break;
       case EXIBIR_POR_ID:
-        id = Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente"));
-        descontoRecorrente = descontoRecorrenteDAO.findById(id).orElse(null);
+        id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente")));
+        descontoRecorrente = descontoRecorrenteDAO.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
         exibirDescontoRecorrente(descontoRecorrente);
         break;
       case EXIBIR_TODOS:
         listarDescontosRecorrentes(descontoRecorrenteDAO.findAll());
         break;
       case EXIBIR_POR_CONTA:
-        id = Integer.parseInt(JOptionPane.showInputDialog("ID da Conta"));
+        id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID da Conta")));
         Conta conta = contaDAO.findById(id).orElse(null);
         if (conta != null) {
           descontosRecorrentes = descontoRecorrenteDAO.findAllByConta(conta);

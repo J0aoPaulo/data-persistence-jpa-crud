@@ -118,7 +118,7 @@ public class MenuUsuarios {
                 cpf = JOptionPane.showInputDialog("CPF");
                 usu = baseUsuario.findFirstByCpf(cpf);
                 if (usu != null) {
-                    baseUsuario.deleteById(usu.getIdUsuario());
+                    baseUsuario.deleteById(String.valueOf(Integer.valueOf(usu.getIdUsuario())));
                 } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível remover, pois o usuario não foi encontrado");
                 }
@@ -130,7 +130,7 @@ public class MenuUsuarios {
                 break;
             case EXIBIR_POR_ID:
                 int id = Integer.parseInt(JOptionPane.showInputDialog("Id"));
-                usu = baseUsuario.findById(id).orElse(null);
+                usu = baseUsuario.findById(String.valueOf(id)).orElse(null);
                 listaUsuario(usu);
                 break;
             case EXIBIR_TODOS:

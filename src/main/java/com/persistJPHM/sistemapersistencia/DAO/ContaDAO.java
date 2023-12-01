@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ContaDAO extends JpaRepository<Conta, Integer> {
+public interface ContaDAO extends JpaRepository<Conta, String> {
     //Pesquisar um id de conta especifico -
-    Conta findByidConta(Integer idUsuario);
+    Conta findByidConta(String idUsuario);
 
     //Pesquisar numero de telefone específico -
     Conta findByNumeroTelefone(String numero);

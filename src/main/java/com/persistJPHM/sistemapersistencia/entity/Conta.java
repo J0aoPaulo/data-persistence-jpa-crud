@@ -10,16 +10,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
         @NamedQuery(name = "listarTodosTelefones",
         query = "SELECT c.numeroTelefone FROM Conta c")
 })
-@Document
-// @Entity
-// @Table (name = "Conta")
+@Document(collection = "contas")
+@Entity
+@Table (name = "Conta")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @ToString
 public class Conta {
     @Id
-    private Integer idConta;
+    private String idConta;
 
     @OneToOne
     private Usuario usuario;

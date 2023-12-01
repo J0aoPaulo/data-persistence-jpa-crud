@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UsuarioDAO extends JpaRepository<Usuario, Integer> {
+public interface UsuarioDAO extends JpaRepository<Usuario, String> {
     //Buscar Usuario por cpf
     Usuario findFirstByCpf(String cpf);
 
@@ -37,5 +37,5 @@ public interface UsuarioDAO extends JpaRepository<Usuario, Integer> {
     public long contaUsuarios();
 
     @Query("SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
-    Usuario findByIdUsuario(@Param("idUsuario") Integer idUsuario);
+    Usuario findByIdUsuario(@Param("idUsuario") String idUsuario);
 }
