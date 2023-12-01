@@ -1,17 +1,21 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
-import com.persistJPHM.sistemapersistencia.model.MongoConta;
+
+import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-//@EntityScan("com/persistJPHM/sistemapersistencia.entity")
-//@EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO")
-//@ComponentScan("com.persistJPHM.sistemapersistencia")
+@EntityScan("com/persistJPHM/sistemapersistencia.entity")
+@EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO")
+@ComponentScan("com.persistJPHM.sistemapersistencia")
 @EnableMongoRepositories("com.persistJPHM.sistemapersistencia.repository")
 public class MenuPrincipal implements CommandLineRunner {
 	//@Autowired
@@ -36,8 +40,7 @@ public class MenuPrincipal implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		contaRepository.save(new MongoConta("Hermeson Borgas"));
-
+		contaRepository.save(new Conta());
 
 		/*int op = 0;
 

@@ -4,12 +4,15 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @NamedQueries({
         @NamedQuery(name = "listarTodosTelefones",
         query = "SELECT c.numeroTelefone FROM Conta c")
 })
-@Entity
-@Table (name = "Conta")
+@Document
+// @Entity
+// @Table (name = "Conta")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
