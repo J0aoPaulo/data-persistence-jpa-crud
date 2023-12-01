@@ -1,6 +1,5 @@
 package com.persistJPHM.sistemapersistencia.repository;
 
-import com.persistJPHM.sistemapersistencia.DAO.ContaDAO;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ContaMongoDao extends ContaDAO, MongoRepository<Conta, String> {
+public interface ContaMongoDao extends MongoRepository<Conta, String> {
     @Query(value = "{ '_id' : ?0 }", fields = "{ 'numeroTelefone' : 1, 'valorTotalConta' : 1}")
     Conta findByIdNativeQuery(String id);
 
