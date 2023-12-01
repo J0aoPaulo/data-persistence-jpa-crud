@@ -93,6 +93,24 @@ public class MenuUsuarios {
         return OpcaoMenu.values()[opcaoInt - 1];
     }
 
+    public int escolhaBanco() {
+        String menu = """
+                Escolha o banco de dados
+                1 - Relacional
+                2 - Não relacional
+                """;
+        String opcaoStr = JOptionPane.showInputDialog(menu);
+        int opcaoInt = Integer.parseInt(opcaoStr);
+
+        // Validar a entrada do usuário
+        if (opcaoInt < 1 || opcaoInt > 2) {
+            JOptionPane.showMessageDialog(null, "Opção inválida");
+            return escolhaBanco();
+        }
+
+        return opcaoInt;
+    }
+
     private void realizarAcao(OpcaoMenu opcao) {
         Usuario usu;
         String cpf;
@@ -102,7 +120,11 @@ public class MenuUsuarios {
             case INSERIR:
                 usu = new Usuario();
                 obterUsuario(usu);
-                baseUsuario.save(usu);
+                if(escolhaBanco() == 1) {
+                    baseUsuario.save(usu);
+                    break;
+                }
+                // consulta não relacional
                 break;
             case ATUALIZAR_POR_CPF:
                 cpf = JOptionPane.showInputDialog("Digite o cpf do Usuario a ser alterado");
