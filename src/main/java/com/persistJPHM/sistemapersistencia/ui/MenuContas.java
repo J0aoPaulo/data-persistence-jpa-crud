@@ -30,6 +30,8 @@ public class MenuContas {
     @Autowired
     private UsuarioDAO baseUsuario;
 
+    // criar o baseUsuarioMongo
+
     @Autowired
     private MenuTransacoes menuTransacoes;
 

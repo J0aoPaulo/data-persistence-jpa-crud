@@ -2,7 +2,6 @@ package com.persistJPHM.sistemapersistencia.ui;
 
 
 import com.persistJPHM.sistemapersistencia.entity.Conta;
-import com.persistJPHM.sistemapersistencia.entity.DescontoRecorrente;
 import com.persistJPHM.sistemapersistencia.entity.Transacao;
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
 import com.persistJPHM.sistemapersistencia.repository.ContaMongoDao;
@@ -17,6 +16,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.*;
 
@@ -54,7 +56,7 @@ public class MenuPrincipal implements CommandLineRunner {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(MenuPrincipal.class);
 		builder.headless(false).run(args);
 	}
-
+	
 	@Override
 	public void run(String... args) {
 		int op = 0;
@@ -70,13 +72,17 @@ public class MenuPrincipal implements CommandLineRunner {
 
 			switch (op) {
 				case 1:
-					menuUsuarios.menu();
+					// menuUsuarios.menu();
+					Conta conta = new Conta("herso", new Usuario(), "99999999", new ArrayList<>(), new ArrayList<>());
+					contaMongoDao.save(conta);
 					break;
 				case 2:
 					menuContas.menu();
 					break;
 				case 3:
-					menuTransacoes.menu();
+					Transacao transacao = new Transacao(null, new Conta(), new Date(), 100.0);
+					transacaoMongoDao.save(transacao);
+					// menuTransacoes.menu();
 					break;
 				case 4:
 					menuDesconto.menu();
