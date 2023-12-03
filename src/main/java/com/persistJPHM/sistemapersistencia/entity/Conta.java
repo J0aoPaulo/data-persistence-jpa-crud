@@ -19,6 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString
 public class Conta {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String idConta;
 
     @OneToOne
@@ -56,5 +57,8 @@ public class Conta {
         }
         sb.append("]}");
         return sb.toString();
+    }
+
+    public void save(Conta conta) {
     }
 }

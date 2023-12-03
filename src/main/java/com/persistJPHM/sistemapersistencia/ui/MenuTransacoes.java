@@ -1,7 +1,9 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
-import com.persistJPHM.sistemapersistencia.DAO.jpa.ContaDAO;
-import com.persistJPHM.sistemapersistencia.DAO.jpa.TransacaoDAO;
+import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
+import com.persistJPHM.sistemapersistencia.DAO.TransacaoGeneric;
+import com.persistJPHM.sistemapersistencia.DAO.jpa.ContaJPADAO;
+import com.persistJPHM.sistemapersistencia.DAO.jpa.TransacaoJPADAO;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.Transacao;
 import lombok.extern.slf4j.Slf4j;
@@ -36,10 +38,10 @@ public class MenuTransacoes {
     }
 
     @Autowired
-    private TransacaoDAO transacaoDAO;
+    private TransacaoGeneric transacaoDAO;
 
     @Autowired
-    private ContaDAO contaDAO;
+    private ContaGeneric contaDAO;
 
     public void obterTransacao(Transacao transacao) {
       String idConta = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID da Conta")));
@@ -122,7 +124,7 @@ public class MenuTransacoes {
                 break;
             case ATUALIZAR_POR_ID:
                 id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID da Transacao a ser alterada"));
-                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
+                transacao = transacaoDAO.findById(String.valueOf(id));
                 if (transacao != null) {
                     obterTransacao(transacao);
                     transacaoDAO.save(transacao);
@@ -132,7 +134,7 @@ public class MenuTransacoes {
                 break;
             case REMOVER_POR_ID:
                 id = Integer.parseInt(JOptionPane.showInputDialog("ID da Transacao"));
-                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
+                transacao = transacaoDAO.findById(String.valueOf(id));
                 if (transacao != null) {
                     transacaoDAO.deleteById(String.valueOf(Integer.valueOf(transacao.getIdTran())));
                 } else {

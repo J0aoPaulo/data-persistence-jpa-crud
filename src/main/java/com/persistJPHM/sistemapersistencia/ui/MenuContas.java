@@ -1,7 +1,7 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
-import com.persistJPHM.sistemapersistencia.DAO.jpa.ContaDAO;
-import com.persistJPHM.sistemapersistencia.DAO.jpa.UsuarioDAO;
+import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
+import com.persistJPHM.sistemapersistencia.DAO.UsuarioGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
 import lombok.extern.slf4j.Slf4j;
@@ -25,12 +25,10 @@ public class MenuContas {
     }
 
     @Autowired
-    private ContaDAO baseConta;
+    private ContaGeneric baseConta;
 
     @Autowired
-    private UsuarioDAO baseUsuario;
-
-    // criar o baseUsuarioMongo
+    private UsuarioGeneric baseUsuario;
 
     @Autowired
     private MenuTransacoes menuTransacoes;
@@ -39,7 +37,7 @@ public class MenuContas {
         String numeroTele = JOptionPane.showInputDialog(null, "Numero de telefone associado a conta: ");
         String id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o id do usuario que será associado a conta")));
 
-        Usuario usuario = baseUsuario.findByIdUsuario(String.valueOf(Integer.valueOf(id)));
+        Usuario usuario = baseUsuario.findById(String.valueOf(Integer.valueOf(id)));
 
         if (usuario == null) {
             JOptionPane.showMessageDialog(null, "Digite um usuário existente");

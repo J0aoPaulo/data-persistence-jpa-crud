@@ -19,7 +19,7 @@ import java.util.Date;
 @Data
 public class Transacao {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String idTran;
 
     @ManyToOne

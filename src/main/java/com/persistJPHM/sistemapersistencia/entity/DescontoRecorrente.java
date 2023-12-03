@@ -21,7 +21,7 @@ import java.util.Date;
 @Data
 public class DescontoRecorrente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String idDesconto;
 
     @Column(name = "valor_desconto")

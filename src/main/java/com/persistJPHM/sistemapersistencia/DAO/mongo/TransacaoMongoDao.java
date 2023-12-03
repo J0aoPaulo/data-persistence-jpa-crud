@@ -7,4 +7,5 @@ import com.persistJPHM.sistemapersistencia.DAO.TransacaoGeneric;
 
 public interface TransacaoMongoDao extends TransacaoGeneric,
         MongoRepository<Transacao, String> {
+     
 }

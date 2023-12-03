@@ -19,7 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String idUsuario;
 
     @NonNull

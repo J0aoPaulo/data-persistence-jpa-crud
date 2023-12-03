@@ -1,7 +1,7 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
-import com.persistJPHM.sistemapersistencia.DAO.jpa.ContaDAO;
-import com.persistJPHM.sistemapersistencia.DAO.jpa.DescontoRecorrenteDAO;
+import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
+import com.persistJPHM.sistemapersistencia.DAO.DescontoGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.DescontoRecorrente;
 import lombok.extern.slf4j.Slf4j;
@@ -32,16 +32,16 @@ public class MenuDesconto {
   }
 
   @Autowired
-  private DescontoRecorrenteDAO descontoRecorrenteDAO;
+  private DescontoGeneric baseDesconto;
 
   @Autowired
-  private ContaDAO contaDAO;
+  private ContaGeneric baseConta;
 
   public void obterDescontoRecorrente(DescontoRecorrente descontoRecorrente) {
     String idConta = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID da Conta")));
     double valorDesconto = Double.parseDouble(JOptionPane.showInputDialog("Valor do Desconto"));
 
-    Conta conta = contaDAO.findById(idConta).orElse(null);
+    Conta conta = baseConta.findById(idConta);
 
     if (conta == null) {
       JOptionPane.showMessageDialog(null,
@@ -51,7 +51,7 @@ public class MenuDesconto {
       descontoRecorrente.setValorDesconto(valorDesconto);
       descontoRecorrente.setDataDesconto(new Date());
 
-      descontoRecorrenteDAO.save(descontoRecorrente);
+      baseDesconto.save(descontoRecorrente);
       JOptionPane.showMessageDialog(null, "Desconto Recorrente inserido com sucesso!");
     }
   }
@@ -119,10 +119,10 @@ public class MenuDesconto {
         break;
       case ATUALIZAR_POR_ID:
         id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Desconto Recorrente a ser alterado")));
-        descontoRecorrente = descontoRecorrenteDAO.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
+        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id)));
         if (descontoRecorrente != null) {
           obterDescontoRecorrente(descontoRecorrente);
-          descontoRecorrenteDAO.save(descontoRecorrente);
+          baseDesconto.save(descontoRecorrente);
         } else {
           JOptionPane.showMessageDialog(null,
               "Não foi possível atualizar, pois o desconto recorrente não foi encontrado.");
@@ -130,9 +130,9 @@ public class MenuDesconto {
         break;
       case REMOVER_POR_ID:
         id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente")));
-        descontoRecorrente = descontoRecorrenteDAO.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
+        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id)));
         if (descontoRecorrente != null) {
-          descontoRecorrenteDAO.deleteById(descontoRecorrente.getIdDesconto());
+          baseDesconto.deleteById(descontoRecorrente.getIdDesconto());
         } else {
           JOptionPane.showMessageDialog(null,
               "Não foi possível remover, pois o desconto recorrente não foi encontrado");
@@ -140,33 +140,33 @@ public class MenuDesconto {
         break;
       case EXIBIR_POR_ID:
         id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente")));
-        descontoRecorrente = descontoRecorrenteDAO.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
+        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id)));
         exibirDescontoRecorrente(descontoRecorrente);
         break;
       case EXIBIR_TODOS:
-        listarDescontosRecorrentes(descontoRecorrenteDAO.findAll());
+        listarDescontosRecorrentes(baseDesconto.findAll());
         break;
       case EXIBIR_POR_CONTA:
         id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID da Conta")));
-        Conta conta = contaDAO.findById(id).orElse(null);
+        Conta conta = baseConta.findById(id);
         if (conta != null) {
-          descontosRecorrentes = descontoRecorrenteDAO.findAllByConta(conta);
+          descontosRecorrentes = baseDesconto.findAllByConta(conta);
           listarDescontosRecorrentes(descontosRecorrentes);
         } else {
           JOptionPane.showMessageDialog(null, "Conta não encontrada com o ID fornecido.");
         }
         break;
       case CALCULAR_MEDIA_VALOR:
-        Double mediaValor = descontoRecorrenteDAO.findAverageDiscountValue();
+        Double mediaValor = baseDesconto.findAverageDiscountValue();
         JOptionPane.showMessageDialog(null, mediaValor == null ? "Nenhum desconto recorrente no sistema"
             : "Média do valor dos descontos recorrentes no sistema: " + mediaValor);
         break;
       case EXIBIR_MAIS_ALTO:
-        descontoRecorrente = descontoRecorrenteDAO.findTopByOrderByValorDescontoDesc();
+        descontoRecorrente = baseDesconto.findTopByOrderByValorDescontoDesc();
         exibirDescontoRecorrente(descontoRecorrente);
         break;
       case EXIBIR_MAIS_BAIXO:
-        descontoRecorrente = descontoRecorrenteDAO.findTopByOrderByValorDescontoAsc();
+        descontoRecorrente = baseDesconto.findTopByOrderByValorDescontoAsc();
         exibirDescontoRecorrente(descontoRecorrente);
         break;
       case SAIR:

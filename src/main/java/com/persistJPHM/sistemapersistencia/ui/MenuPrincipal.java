@@ -4,6 +4,10 @@ package com.persistJPHM.sistemapersistencia.ui;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.Transacao;
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
+import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
+import com.persistJPHM.sistemapersistencia.DAO.DescontoGeneric;
+import com.persistJPHM.sistemapersistencia.DAO.TransacaoGeneric;
+import com.persistJPHM.sistemapersistencia.DAO.UsuarioGeneric;
 import com.persistJPHM.sistemapersistencia.DAO.mongo.ContaMongoDao;
 import com.persistJPHM.sistemapersistencia.DAO.mongo.DescontoMongoDao;
 import com.persistJPHM.sistemapersistencia.DAO.mongo.TransacaoMongoDao;
@@ -24,9 +28,9 @@ import javax.swing.*;
 
 @SpringBootApplication
 @EntityScan("com/persistJPHM/sistemapersistencia.entity")
-@EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO")
+// @EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO.jpa")
 @ComponentScan("com.persistJPHM.sistemapersistencia")
-@EnableMongoRepositories("com.persistJPHM.sistemapersistencia.repository")
+@EnableMongoRepositories("com.persistJPHM.sistemapersistencia.DAO.mongo")
 public class MenuPrincipal implements CommandLineRunner {
 	@Autowired
 	MenuUsuarios menuUsuarios;
@@ -41,16 +45,16 @@ public class MenuPrincipal implements CommandLineRunner {
 	MenuDesconto menuDesconto;
 
 	@Autowired
-	ContaMongoDao contaMongoDao;
+	ContaGeneric conta;
 
 	@Autowired
-	DescontoMongoDao descontoMongoDao;
+	DescontoGeneric desconto;
 
 	@Autowired
-	TransacaoMongoDao transacaoMongoDao;
+	TransacaoGeneric transacao;
 
 	@Autowired
-	UsuarioMongoDao usuarioMongoDao;
+	UsuarioGeneric usuario;
 
 	public static void main(String[] args) {
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(MenuPrincipal.class);
@@ -74,7 +78,7 @@ public class MenuPrincipal implements CommandLineRunner {
 				case 1:
 					// menuUsuarios.menu();
 					Conta conta = new Conta("herso", new Usuario(), "99999999", new ArrayList<>(), new ArrayList<>());
-					contaMongoDao.save(conta);
+					conta.save(conta);
 					break;
 				case 2:
 					menuContas.menu();
