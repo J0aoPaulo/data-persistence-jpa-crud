@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ContaJPADAO extends ContaGeneric,
-        JpaRepository<Conta, String> {
+public interface ContaJPADAO extends ContaGeneric, JpaRepository<Conta, String> {
     //Pesquisar um id de conta especifico -
     Conta findByidConta(String idUsuario);
 
