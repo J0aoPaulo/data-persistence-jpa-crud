@@ -1,7 +1,7 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
-import com.persistJPHM.sistemapersistencia.DAO.ContaDAO;
-import com.persistJPHM.sistemapersistencia.DAO.DescontoRecorrenteDAO;
+import com.persistJPHM.sistemapersistencia.DAO.jpa.ContaDAO;
+import com.persistJPHM.sistemapersistencia.DAO.jpa.DescontoRecorrenteDAO;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.DescontoRecorrente;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.persistJPHM.sistemapersistencia.DAO;
+package com.persistJPHM.sistemapersistencia.DAO.jpa;
 
 import java.util.List;
 

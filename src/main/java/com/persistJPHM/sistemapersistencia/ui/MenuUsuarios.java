@@ -1,8 +1,8 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
-import com.persistJPHM.sistemapersistencia.DAO.UsuarioDAO;
+import com.persistJPHM.sistemapersistencia.DAO.jpa.UsuarioDAO;
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
-import com.persistJPHM.sistemapersistencia.repository.UsuarioMongoDao;
+import com.persistJPHM.sistemapersistencia.DAO.mongo.UsuarioMongoDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -26,7 +26,7 @@ public class Conta {
 
     private String numeroTelefone;
 
-    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     private List<Transacao> transacoes;
 
     @ToString.Exclude
