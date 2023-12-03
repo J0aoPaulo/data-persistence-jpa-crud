@@ -38,23 +38,31 @@ public class MenuDesconto {
   private ContaGeneric baseConta;
 
   public void obterDescontoRecorrente(DescontoRecorrente descontoRecorrente) {
-    String idConta = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID da Conta")));
-    double valorDesconto = Double.parseDouble(JOptionPane.showInputDialog("Valor do Desconto"));
+    List<Conta> contas = baseConta.findAll();
+    
+    if (contas.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Não há contas disponíveis. Não é possível inserir Desconto Recorrente.");
+        return;
+    }
 
-    Conta conta = baseConta.findById(idConta).orElse(null);
+    Conta conta = (Conta) JOptionPane.showInputDialog(
+            null, "Selecione uma conta",
+            "Contas", JOptionPane.PLAIN_MESSAGE, null, contas.toArray(), null);
 
     if (conta == null) {
-      JOptionPane.showMessageDialog(null,
-          "Conta não encontrada com o ID fornecido. Desconto Recorrente não será inserido.");
-    } else {
-      descontoRecorrente.setDescontoConta(conta);
-      descontoRecorrente.setValorDesconto(valorDesconto);
-      descontoRecorrente.setDataDesconto(new Date());
-
-      baseDesconto.save(descontoRecorrente);
-      JOptionPane.showMessageDialog(null, "Desconto Recorrente inserido com sucesso!");
+        JOptionPane.showMessageDialog(null, "Selecione uma conta válida. Desconto Recorrente não será inserido.");
+        return;
     }
-  }
+
+    double valorDesconto = Double.parseDouble(JOptionPane.showInputDialog("Valor do Desconto"));
+
+    descontoRecorrente.setDescontoConta(conta);
+    descontoRecorrente.setValorDesconto(valorDesconto);
+    descontoRecorrente.setDataDesconto(new Date());
+
+    baseDesconto.save(descontoRecorrente);
+    JOptionPane.showMessageDialog(null, "Desconto Recorrente inserido com sucesso!");
+}
 
   public void listarDescontosRecorrentes(List<DescontoRecorrente> descontosRecorrentes) {
     StringBuilder listagem = new StringBuilder();

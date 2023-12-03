@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.persistJPHM.sistemapersistencia.DAO.UsuarioGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
+
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -31,7 +33,4 @@ public interface UsuarioJPADAO extends UsuarioGeneric, JpaRepository<Usuario, St
     //Conta quantos usuarios existem
     @Query(value = "select count(*) from usuario u", nativeQuery = true)
     public int contaUsuarios();
-
-    @Query("SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
-    Usuario findByIdUsuario(String idUsuario);
 }

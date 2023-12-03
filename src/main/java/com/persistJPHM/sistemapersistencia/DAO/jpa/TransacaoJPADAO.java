@@ -5,6 +5,7 @@ import com.persistJPHM.sistemapersistencia.entity.Transacao;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -16,10 +17,6 @@ public interface TransacaoJPADAO extends TransacaoGeneric,
         JpaRepository<Transacao, String> {
 
   // ----------------------------- JPQL ----------------------------- //
-
-  // busca uma transacao por id
-  @Query("SELECT t FROM Transacao t WHERE t.idTran = :id") 
-  public Transacao buscaPorId(String id);
   
   // busca uma lista de transacoes em um intervalor de valor
   @Query("SELECT t FROM Transacao t WHERE t.valorTransacao BETWEEN :minValue AND :maxValue") 

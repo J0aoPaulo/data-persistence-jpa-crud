@@ -2,6 +2,8 @@ package com.persistJPHM.sistemapersistencia.DAO.mongo;
 
 import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
+
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
