@@ -2,8 +2,6 @@ package com.persistJPHM.sistemapersistencia.ui;
 
 import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
 import com.persistJPHM.sistemapersistencia.DAO.TransacaoGeneric;
-import com.persistJPHM.sistemapersistencia.DAO.jpa.ContaJPADAO;
-import com.persistJPHM.sistemapersistencia.DAO.jpa.TransacaoJPADAO;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.Transacao;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +46,7 @@ public class MenuTransacoes {
       Date dataTransacao = new Date();
       double valorTransacao = Double.parseDouble(JOptionPane.showInputDialog("Valor da Transacao"));
   
-      Conta conta = contaDAO.findByidConta(idConta);
+      Conta conta = contaDAO.findById(idConta).orElse(null);
   
       if (conta != null) {
           transacao.setConta(conta);
@@ -124,7 +122,7 @@ public class MenuTransacoes {
                 break;
             case ATUALIZAR_POR_ID:
                 id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID da Transacao a ser alterada"));
-                transacao = transacaoDAO.findById(String.valueOf(id));
+                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
                 if (transacao != null) {
                     obterTransacao(transacao);
                     transacaoDAO.save(transacao);
@@ -134,7 +132,7 @@ public class MenuTransacoes {
                 break;
             case REMOVER_POR_ID:
                 id = Integer.parseInt(JOptionPane.showInputDialog("ID da Transacao"));
-                transacao = transacaoDAO.findById(String.valueOf(id));
+                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
                 if (transacao != null) {
                     transacaoDAO.deleteById(String.valueOf(Integer.valueOf(transacao.getIdTran())));
                 } else {
@@ -143,7 +141,7 @@ public class MenuTransacoes {
                 break;
             case EXIBIR_POR_ID:
                 id = Integer.parseInt(JOptionPane.showInputDialog("ID da Transacao"));
-                transacao = transacaoDAO.buscaPorId(String.valueOf(id));
+                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
                 exibirTransacao(transacao);
                 break;
             case EXIBIR_TODOS:
@@ -152,7 +150,7 @@ public class MenuTransacoes {
             case EXIBIR_POR_INTERVALO_VALOR:
                 double minValue = Double.parseDouble(JOptionPane.showInputDialog("Valor Mínimo"));
                 double maxValue = Double.parseDouble(JOptionPane.showInputDialog("Valor Máximo"));
-                transacoes = transacaoDAO.buscaPorContaId(minValue, maxValue);
+                transacoes = transacaoDAO.buscarEntreValores(minValue, maxValue);
                 listarTransacoes(transacoes);
                 break;
             case NUMERO_TRANSACOES:

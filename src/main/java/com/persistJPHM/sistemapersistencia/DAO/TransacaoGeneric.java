@@ -4,6 +4,7 @@ import com.persistJPHM.sistemapersistencia.entity.Transacao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface TransacaoGeneric {
 
@@ -23,7 +24,7 @@ public interface TransacaoGeneric {
 
         public void deleteById(String id);
 
-        public Transacao findById(String id);
+        public Optional<Transacao> findById(String id);
 
         public List<Transacao> findAll();
 }

@@ -1,11 +1,15 @@
 package com.persistJPHM.sistemapersistencia.DAO.mongo;
 
+import com.persistJPHM.sistemapersistencia.DAO.UsuarioGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-public interface UsuarioMongoDao extends MongoRepository<Usuario, String> {
+@Repository
+public interface UsuarioMongoDao extends UsuarioGeneric, MongoRepository<Usuario, String> {
     // Buscar Usuario por cpf
     Usuario findFirstByCpf(String cpf);
 
@@ -16,9 +20,6 @@ public interface UsuarioMongoDao extends MongoRepository<Usuario, String> {
     @Query("{'cpf': {$regex : '^?0.*', $options: 'i'}}")
     List<Usuario> procureCpfsComTresPrimeirosNumeros(String tresPrimeirosNumeros);
 
-    // Procurar usuarios entre dois 'ids’ diferentes
-    List<Usuario> findByIdUsuarioBetween(String idInicial, String idFinal);
-
     // Consultar Usuario por nome específico
     List<Usuario> findByNome(String nome);
 
@@ -27,7 +28,8 @@ public interface UsuarioMongoDao extends MongoRepository<Usuario, String> {
     List<Usuario> consultaPorLetra(String prefix);
 
     // Conta quantos usuarios existem
-    long count();
+    @Query(value = "{}", count = true)
+    public int contaUsuarios();
 
     // Consulta por ID de Usuario
     Usuario findByIdUsuario(String idUsuario);

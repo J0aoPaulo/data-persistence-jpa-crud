@@ -19,10 +19,6 @@ public interface UsuarioJPADAO extends JpaRepository<Usuario, String> {
     @Query("SELECT u FROM Usuario u WHERE SUBSTRING(u.cpf, 1, 3) = :tresPrimeirosNumeros")
     List<Usuario> procureCpfsComTresPrimeirosNumeros(String tresPrimeirosNumeros);
 
-    //Procurar usuarios entre dois 'ids’ diferentes
-    @Query(name = "usuarioEntreID")
-    public List<Usuario> consultarUsuarioEntreId(String idInicial, String idFinal);
-
     //Consultar Usuario por nome específico
     @Query(name = "consultaPorNome")
     public List<Usuario> consultaPorNomeEspecifico(String nome);

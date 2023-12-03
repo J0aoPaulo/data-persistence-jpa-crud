@@ -4,17 +4,15 @@ import com.persistJPHM.sistemapersistencia.DAO.mongo.ContaMongoDao;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ContaGeneric {
-    public Conta findByidConta(String idUsuario);
 
     public Conta findByNumeroTelefone(String numero);
 
     public List<Conta> consultarTodasContas();
 
     public List<String> consultarTodosTelefones();
-
-    public Conta findByIdNativeQuery(String id);
 
     public List<ContaMongoDao.ContaProjection> findAllContaProjections();
 
@@ -24,7 +22,7 @@ public interface ContaGeneric {
 
         public void deleteById(String id);
 
-        public Conta findById(String id);
+        public Optional<Conta> findById(String id);
 
         public List<Conta> findAll();
 }
