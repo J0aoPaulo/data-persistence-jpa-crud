@@ -1,6 +1,7 @@
 package com.persistJPHM.sistemapersistencia.DAO;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
 
@@ -12,8 +13,6 @@ public interface UsuarioGeneric {
 
   public List<Usuario> consultaPorLetra(String prefix);
 
-  public List<Usuario> consultarUsuarioEntreId(String idInicial, String idFinal);
-
   public List<Usuario> consultaPorNomeEspecifico(String nome);
 
   public Usuario findFirstByCpf(String cpf);
@@ -21,6 +20,8 @@ public interface UsuarioGeneric {
     public void save(Usuario usu);
 
     public void deleteById(String id);
+
+    public Optional<Usuario> findById(String id);
 
     public List<Usuario> findAll();
 }

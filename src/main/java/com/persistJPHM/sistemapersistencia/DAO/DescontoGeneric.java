@@ -5,6 +5,7 @@ import com.persistJPHM.sistemapersistencia.entity.DescontoRecorrente;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface DescontoGeneric {
     public List<DescontoRecorrente> findAllByConta(Conta conta);
@@ -22,6 +23,8 @@ public interface DescontoGeneric {
         public void save(DescontoRecorrente desc);
 
         public void deleteById(String id);
+
+        public Optional<DescontoRecorrente> findById(String id);
 
         public List<DescontoRecorrente> findAll();
 

@@ -41,7 +41,7 @@ public class MenuDesconto {
     String idConta = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID da Conta")));
     double valorDesconto = Double.parseDouble(JOptionPane.showInputDialog("Valor do Desconto"));
 
-    Conta conta = baseConta.findById(idConta);
+    Conta conta = baseConta.findById(idConta).orElse(null);
 
     if (conta == null) {
       JOptionPane.showMessageDialog(null,
@@ -119,7 +119,7 @@ public class MenuDesconto {
         break;
       case ATUALIZAR_POR_ID:
         id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Desconto Recorrente a ser alterado")));
-        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id)));
+        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
         if (descontoRecorrente != null) {
           obterDescontoRecorrente(descontoRecorrente);
           baseDesconto.save(descontoRecorrente);
@@ -130,7 +130,7 @@ public class MenuDesconto {
         break;
       case REMOVER_POR_ID:
         id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente")));
-        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id)));
+        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
         if (descontoRecorrente != null) {
           baseDesconto.deleteById(descontoRecorrente.getIdDesconto());
         } else {
@@ -140,7 +140,7 @@ public class MenuDesconto {
         break;
       case EXIBIR_POR_ID:
         id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente")));
-        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id)));
+        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
         exibirDescontoRecorrente(descontoRecorrente);
         break;
       case EXIBIR_TODOS:
@@ -148,7 +148,7 @@ public class MenuDesconto {
         break;
       case EXIBIR_POR_CONTA:
         id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID da Conta")));
-        Conta conta = baseConta.findById(id);
+        Conta conta = baseConta.findById(id).orElse(null);
         if (conta != null) {
           descontosRecorrentes = baseDesconto.findAllByConta(conta);
           listarDescontosRecorrentes(descontosRecorrentes);

@@ -37,7 +37,7 @@ public class MenuContas {
         String numeroTele = JOptionPane.showInputDialog(null, "Numero de telefone associado a conta: ");
         String id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o id do usuario que será associado a conta")));
 
-        Usuario usuario = baseUsuario.findById(String.valueOf(Integer.valueOf(id)));
+        Usuario usuario = baseUsuario.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
 
         if (usuario == null) {
             JOptionPane.showMessageDialog(null, "Digite um usuário existente");
@@ -115,7 +115,7 @@ public class MenuContas {
                 break;
             case EXIBIR_POR_ID:
                 String idConta = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("Id da conta")));
-                conta = baseConta.findByidConta(idConta);
+                conta = baseConta.findById(idConta).orElse(null);
                 listarConta(conta);
                 break;
             case EXIBIR_POR_NUMERO:

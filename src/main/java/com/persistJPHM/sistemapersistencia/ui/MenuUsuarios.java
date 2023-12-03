@@ -30,7 +30,7 @@ public class MenuUsuarios {
     }
 
     @Autowired
-    private UsuarioGeneric baseUsuario;
+    UsuarioGeneric baseUsuario;
 
     public void obterUsuario(Usuario usu) {
         String nome = JOptionPane.showInputDialog("Nome", usu.getNome());
@@ -74,11 +74,10 @@ public class MenuUsuarios {
                 5 - Exibir por id
                 6 - Exibir todos
                 7 - Exibir todos que contém determinado nome
-                8 - Exibir usuarios entre dois id diferentes
-                9 - Exibir usuarios por uma letra específica
-                10 - Buscar usuarios pelos 3 primeiros numeros do cpf
-                11 - Listar a quantidade de contas existentes
-                12 - Sair
+                8 - Exibir usuarios por uma letra específica
+                9 - Buscar usuarios pelos 3 primeiros numeros do cpf
+                10 - Listar a quantidade de contas existentes
+                11 - Sair
                 """;
 
         String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -152,7 +151,7 @@ public class MenuUsuarios {
                 break;
             case EXIBIR_POR_ID:
                 int id = Integer.parseInt(JOptionPane.showInputDialog("Id"));
-                usu = baseUsuario.findById(String.valueOf(id));
+                usu = baseUsuario.findById(String.valueOf(id)).orElse(null);
                 listaUsuario(usu);
                 break;
             case EXIBIR_TODOS:
@@ -161,16 +160,6 @@ public class MenuUsuarios {
             case EXIBIR_POR_NOME:
                 String nome = JOptionPane.showInputDialog("Nome");
                 usuarios = baseUsuario.consultaPorNomeEspecifico(nome);
-                listaUsuarios(usuarios);
-                break;
-            case EXIBIR_USUARIOS_ENTRE_IDS:
-                String idInicial = JOptionPane.showInputDialog("Digite o id 1");
-                String idFinal = JOptionPane.showInputDialog("Digite o id 2");
-                if (idInicial.equals(idFinal)) {
-                    JOptionPane.showMessageDialog(null, "Por favor digite dois 'ids' diferentes");
-                    break;
-                }
-                usuarios = baseUsuario.consultarUsuarioEntreId(idInicial, idFinal);
                 listaUsuarios(usuarios);
                 break;
             case EXIBIR_POR_LETRA:
