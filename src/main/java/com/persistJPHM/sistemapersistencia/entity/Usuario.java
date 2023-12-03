@@ -2,6 +2,8 @@ package com.persistJPHM.sistemapersistencia.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @NamedQueries({
@@ -19,7 +21,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String idUsuario;
+    private String id;
 
     @NonNull
     @Column(nullable = false)

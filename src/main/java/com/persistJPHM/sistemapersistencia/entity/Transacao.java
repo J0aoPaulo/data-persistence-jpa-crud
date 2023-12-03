@@ -2,6 +2,8 @@ package com.persistJPHM.sistemapersistencia.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -20,7 +22,7 @@ import java.util.Date;
 public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String idTran;
+    private String id;
 
     @ManyToOne
     @ToString.Exclude
@@ -34,7 +36,7 @@ public class Transacao {
     private double valorTransacao;
 
     public String toString() {
-        String s = "Transacao(idTran=" + this.idTran + ", idConta=" + this.conta.getUsuario().getIdUsuario() + ", dataTransacao=" + this.dataTransacao + ", valorTransacao=" + this.valorTransacao + ")";
+        String s = "Transacao(idTran=" + this.id + ", idConta=" + this.conta.getUsuario().getId() + ", dataTransacao=" + this.dataTransacao + ", valorTransacao=" + this.valorTransacao + ")";
         return s;
     }
 }

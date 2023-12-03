@@ -132,7 +132,7 @@ public class MenuDesconto {
         id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente")));
         descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
         if (descontoRecorrente != null) {
-          baseDesconto.deleteById(descontoRecorrente.getIdDesconto());
+          baseDesconto.deleteById(descontoRecorrente.getId());
         } else {
           JOptionPane.showMessageDialog(null,
               "Não foi possível remover, pois o desconto recorrente não foi encontrado");

@@ -134,7 +134,7 @@ public class MenuTransacoes {
                 id = Integer.parseInt(JOptionPane.showInputDialog("ID da Transacao"));
                 transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
                 if (transacao != null) {
-                    transacaoDAO.deleteById(String.valueOf(Integer.valueOf(transacao.getIdTran())));
+                    transacaoDAO.deleteById(String.valueOf(Integer.valueOf(transacao.getId())));
                 } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível remover, pois a transacao não foi encontrada");
                 }
