@@ -23,7 +23,5 @@ public interface TransacaoGeneric {
 
         public void deleteById(String id);
 
-        public Transacao findById(String id);
-
         public List<Transacao> findAll();
 }

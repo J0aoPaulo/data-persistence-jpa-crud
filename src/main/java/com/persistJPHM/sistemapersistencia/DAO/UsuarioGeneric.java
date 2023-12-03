@@ -22,7 +22,5 @@ public interface UsuarioGeneric {
 
     public void deleteById(String id);
 
-    public Usuario findById(String id);
-
     public List<Usuario> findAll();
 }

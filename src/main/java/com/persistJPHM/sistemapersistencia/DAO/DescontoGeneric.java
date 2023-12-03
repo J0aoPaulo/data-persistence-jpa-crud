@@ -23,8 +23,6 @@ public interface DescontoGeneric {
 
         public void deleteById(String id);
 
-        public DescontoRecorrente findById(String id);
-
         public List<DescontoRecorrente> findAll();
 
 }

@@ -20,11 +20,7 @@ public interface ContaGeneric {
 
     public Conta findByNumeroTelefoneJPQL(String numeroTelefone);
 
-        public void save(Conta conta);
-
         public void deleteById(String id);
-
-        public Conta findById(String id);
 
         public List<Conta> findAll();
 }
