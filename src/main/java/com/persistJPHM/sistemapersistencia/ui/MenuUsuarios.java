@@ -2,6 +2,7 @@ package com.persistJPHM.sistemapersistencia.ui;
 
 import com.persistJPHM.sistemapersistencia.DAO.UsuarioDAO;
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
+import com.persistJPHM.sistemapersistencia.repository.UsuarioMongoDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,9 @@ public class MenuUsuarios {
 
     @Autowired
     private UsuarioDAO baseUsuario;
+
+    @Autowired
+    private UsuarioMongoDao usuarioMongoDao;
 
     public void obterUsuario(Usuario usu) {
         String nome = JOptionPane.showInputDialog("Nome", usu.getNome());
@@ -124,7 +128,7 @@ public class MenuUsuarios {
                     baseUsuario.save(usu);
                     break;
                 }
-                // consulta não relacional
+                usuarioMongoDao.save(usu);
                 break;
             case ATUALIZAR_POR_CPF:
                 cpf = JOptionPane.showInputDialog("Digite o cpf do Usuario a ser alterado");
