@@ -5,13 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import javax.swing.*;
 
-// @EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO.jpa")
-@EnableMongoRepositories("com.persistJPHM.sistemapersistencia.DAO.mongo")
-
+@EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO.jpa")
+// @EnableMongoRepositories("com.persistJPHM.sistemapersistencia.DAO.mongo")
 
 @SpringBootApplication(scanBasePackages = "com.persistJPHM.sistemapersistencia")
 @EntityScan("com/persistJPHM/sistemapersistencia.DAO.entity")
