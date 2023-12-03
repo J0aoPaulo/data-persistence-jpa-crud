@@ -33,7 +33,4 @@ public interface UsuarioMongoDao extends UsuarioGeneric, MongoRepository<Usuario
     // Conta quantos usuarios existem
     @Query(value = "{}", count = true)
     public int contaUsuarios();
-
-    // Consulta por ID de Usuario
-    Usuario findByIdUsuario(String idUsuario);
 }

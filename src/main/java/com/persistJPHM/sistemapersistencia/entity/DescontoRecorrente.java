@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -22,7 +24,7 @@ import java.util.Date;
 public class DescontoRecorrente {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String idDesconto;
+    private String id;
 
     @Column(name = "valor_desconto")
     private double valorDesconto;
@@ -43,8 +45,8 @@ public class DescontoRecorrente {
 
     @Override
     public String toString() {
-        return "DescontoRecorrente{idDesconto=" + idDesconto + ", valorDesconto=" + valorDesconto +
-                ", id da conta=" + (descontoConta != null ? descontoConta.getIdConta() : "null") +
+        return "DescontoRecorrente{idDesconto=" + id + ", valorDesconto=" + valorDesconto +
+                ", id da conta=" + (descontoConta != null ? descontoConta.getId() : "null") +
                 ", dataDesconto=" + dataDesconto + "}";
     }
 }

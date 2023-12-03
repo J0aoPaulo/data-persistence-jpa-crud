@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @NamedQueries({
@@ -20,7 +21,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String idConta;
+    private String id;
 
     @OneToOne
     private Usuario usuario;
@@ -45,7 +46,7 @@ public class Conta {
     public String toStringTodasContas() {
         StringBuilder sb = new StringBuilder();
         sb.append("Conta{")
-                .append("idConta=").append(idConta)
+                .append("idConta=").append(id)
                 .append(", usuario=").append(usuario)
                 .append(", numeroTelefone='").append(numeroTelefone).append('\'')
                 .append(", transacoes=[");
