@@ -10,8 +10,9 @@ import java.util.List;
 
 @Repository
 public interface ContaMongoDao extends ContaGeneric, MongoRepository<Conta, String> {
-    @Query("SELECT c FROM Conta c WHERE c.numeroTelefone = :numeroTelefone")
-    Conta findByNumeroTelefoneJPQL(String numeroTelefone); // OK
+    
+    @Query("{ 'numeroTelefone' : ?0 }")
+    Conta findByNumeroTelefone(String numeroTelefone); //OK
 
     @Query(value = "{}", fields = "{ 'numeroTelefone' : 1, 'valorTotalConta' : 1}")
     List<Conta> consultarTodasContas(); //OK

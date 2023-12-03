@@ -34,19 +34,25 @@ public class MenuContas {
     private MenuTransacoes menuTransacoes;
 
     public void obterESalvarConta() {
-        String numeroTele = JOptionPane.showInputDialog(null, "Numero de telefone associado a conta: ");
-        String id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o id do usuario que será associado a conta")));
-
-        Usuario usuario = baseUsuario.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
-
+        List<Usuario> usuarios = baseUsuario.findAll();
+        Usuario usuario = (Usuario) JOptionPane.showInputDialog(
+                null, "Selecione um usuário",
+                "Usuários", JOptionPane.PLAIN_MESSAGE, null, usuarios.toArray(), null);
+    
         if (usuario == null) {
-            JOptionPane.showMessageDialog(null, "Digite um usuário existente");
-        } else {
-            Conta con = new Conta(id, usuario, numeroTele, null, null);
-            baseConta.save(con);
+            JOptionPane.showMessageDialog(null, "Selecione um usuário válido");
+            return;
         }
+    
+        String numeroTelefone = JOptionPane.showInputDialog(null, "Número de telefone associado à conta: ");
+    
+        Conta conta = new Conta(null, usuario, numeroTelefone, null, null);
+        
+        baseConta.save(conta);
+        
         menuTransacoes.menu();
     }
+    
 
     public void listarConta(Conta conta) {
         JOptionPane.showMessageDialog(null, conta == null ? "Nenhuma conta encontrada" : conta.toString());
@@ -87,9 +93,9 @@ public class MenuContas {
                 Menu Contas
                 1 - Inserir
                 2 - Exibir por id
-                3 - Exibir por numero de telefone // OK
-                4 - Listar todas as contas // OK
-                5 - Exibir todos os numeros de telefone // OK
+                3 - Exibir por numero de telefone
+                4 - Listar todas as contas
+                5 - Exibir todos os numeros de telefone
                 6 - Sair
                 """;
 

@@ -16,7 +16,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@ToString
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -33,4 +32,9 @@ public class Usuario {
     @ToString.Exclude
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Conta conta;
+
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() + ", CPF: " + getCpf();
+    }
 }

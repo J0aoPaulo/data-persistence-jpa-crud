@@ -12,6 +12,7 @@ import java.util.List;
 public interface ContaJPADAO extends ContaGeneric,
         JpaRepository<Conta, String> {
     //Pesquisar numero de telefone específico -
+    @Query("SELECT c FROM Conta c WHERE c.numeroTelefone = :numeroTelefone")
     Conta findByNumeroTelefone(String numero); // OK
 
     //Listar todas as contas existentes -

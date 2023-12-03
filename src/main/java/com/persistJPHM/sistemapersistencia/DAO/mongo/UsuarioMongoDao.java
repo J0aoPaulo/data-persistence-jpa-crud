@@ -27,6 +27,9 @@ public interface UsuarioMongoDao extends UsuarioGeneric, MongoRepository<Usuario
     @Query("{'nome': {$regex : '^?0.*', $options: 'i'}}")
     List<Usuario> consultaPorLetra(String prefix);
 
+    @Query("{ 'nome' : ?0 }")
+    List<Usuario> consultaPorNomeEspecifico(String nome);
+
     // Conta quantos usuarios existem
     @Query(value = "{}", count = true)
     public int contaUsuarios();
