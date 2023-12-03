@@ -1,6 +1,5 @@
 package com.persistJPHM.sistemapersistencia.DAO;
 
-import com.persistJPHM.sistemapersistencia.DAO.mongo.ContaMongoDao;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 
 import java.util.List;
@@ -14,8 +13,6 @@ public interface ContaGeneric {
 
     public List<String> consultarTodosTelefones();
 
-    public List<ContaMongoDao.ContaProjection> findAllContaProjections();
-
     public Conta findByNumeroTelefoneJPQL(String numeroTelefone);
 
         public void save(Conta conta);
@@ -23,6 +20,4 @@ public interface ContaGeneric {
         public void deleteById(String id);
 
         public Optional<Conta> findById(String id);
-
-        public List<Conta> findAll();
 }

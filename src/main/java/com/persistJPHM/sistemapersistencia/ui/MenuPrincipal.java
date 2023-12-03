@@ -11,12 +11,10 @@ import javax.swing.*;
 
 // @EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO.jpa")
 @EnableMongoRepositories("com.persistJPHM.sistemapersistencia.DAO.mongo")
-
-
 @SpringBootApplication(scanBasePackages = "com.persistJPHM.sistemapersistencia")
 @EntityScan("com/persistJPHM/sistemapersistencia.DAO.entity")
 
-public class MenuPrincipal implements CommandLineRunner {
+public class 	MenuPrincipal implements CommandLineRunner {
 	@Autowired
 	MenuUsuarios menuUsuarios;
 

@@ -58,7 +58,4 @@ public class Conta {
         sb.append("]}");
         return sb.toString();
     }
-
-    public void save(Conta conta) {
-    }
 }

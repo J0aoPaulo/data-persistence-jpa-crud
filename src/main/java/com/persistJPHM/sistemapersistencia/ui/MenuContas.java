@@ -87,9 +87,9 @@ public class MenuContas {
                 Menu Contas
                 1 - Inserir
                 2 - Exibir por id
-                3 - Exibir por numero de telefone   
-                4 - Listar todas as contas
-                5 - Exibir todos os numeros de telefone
+                3 - Exibir por numero de telefone // OK
+                4 - Listar todas as contas // OK
+                5 - Exibir todos os numeros de telefone // OK
                 6 - Sair
                 """;
 

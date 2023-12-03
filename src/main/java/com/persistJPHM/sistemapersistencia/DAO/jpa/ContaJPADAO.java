@@ -11,17 +11,14 @@ import java.util.List;
 @Repository
 public interface ContaJPADAO extends ContaGeneric,
         JpaRepository<Conta, String> {
-    //Pesquisar um id de conta especifico -
-    Conta findByidConta(String idUsuario);
-
     //Pesquisar numero de telefone específico -
-    Conta findByNumeroTelefone(String numero);
+    Conta findByNumeroTelefone(String numero); // OK
 
     //Listar todas as contas existentes -
     @Query(value = "SELECT * FROM Conta", nativeQuery = true)
-    public List<Conta> consultarTodasContas();
+    public List<Conta> consultarTodasContas(); // OK
 
     //Listar todos os numeros de telefone -
     @Query(name = "listarTodosTelefones")
-    public List<String> consultarTodosTelefones();
+    public List<String> consultarTodosTelefones(); // OK
 }
