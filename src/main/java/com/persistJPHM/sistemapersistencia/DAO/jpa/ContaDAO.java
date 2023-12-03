@@ -1,5 +1,6 @@
-package com.persistJPHM.sistemapersistencia.DAO;
+package com.persistJPHM.sistemapersistencia.DAO.jpa;
 
+import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ContaDAO extends JpaRepository<Conta, String> {
+public interface ContaDAO extends ContaGeneric,
+        JpaRepository<Conta, String> {
     //Pesquisar um id de conta especifico -
     Conta findByidConta(String idUsuario);
 

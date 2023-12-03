@@ -1,7 +1,7 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
-import com.persistJPHM.sistemapersistencia.DAO.ContaDAO;
-import com.persistJPHM.sistemapersistencia.DAO.TransacaoDAO;
+import com.persistJPHM.sistemapersistencia.DAO.jpa.ContaDAO;
+import com.persistJPHM.sistemapersistencia.DAO.jpa.TransacaoDAO;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.Transacao;
 import lombok.extern.slf4j.Slf4j;
