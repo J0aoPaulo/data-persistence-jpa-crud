@@ -10,12 +10,11 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import javax.swing.*;
 
-@EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO.jpa")
-// @EnableMongoRepositories("com.persistJPHM.sistemapersistencia.DAO.mongo")
+// @EnableJpaRepositories("com/persistJPHM/sistemapersistencia.DAO.jpa")
+@EnableMongoRepositories("com.persistJPHM.sistemapersistencia.DAO.mongo")
 
-@SpringBootApplication(scanBasePackages = "com.persistJPHM.sistemapersistencia")
-@EntityScan("com/persistJPHM/sistemapersistencia.DAO.entity")
-
+@SpringBootApplication(scanBasePackages = { "com.persistJPHM.sistemapersistencia" })
+@EntityScan("com.persistJPHM.sistemapersistencia.entity")
 public class MenuPrincipal implements CommandLineRunner {
 	@Autowired
 	MenuUsuarios menuUsuarios;
