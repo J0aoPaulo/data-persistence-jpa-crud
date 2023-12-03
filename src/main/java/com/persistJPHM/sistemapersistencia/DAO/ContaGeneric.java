@@ -18,4 +18,6 @@ public interface ContaGeneric {
         public void deleteById(String id);
 
         public Optional<Conta> findById(String id);
+
+        public List<Conta> findAll();
 }

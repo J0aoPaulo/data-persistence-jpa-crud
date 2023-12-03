@@ -30,9 +30,6 @@ public class MenuContas {
     @Autowired
     private UsuarioGeneric baseUsuario;
 
-    @Autowired
-    private MenuTransacoes menuTransacoes;
-
     public void obterESalvarConta() {
         List<Usuario> usuarios = baseUsuario.findAll();
         Usuario usuario = (Usuario) JOptionPane.showInputDialog(
@@ -49,8 +46,6 @@ public class MenuContas {
         Conta conta = new Conta(null, usuario, numeroTelefone, null, null);
         
         baseConta.save(conta);
-        
-        menuTransacoes.menu();
     }
     
 

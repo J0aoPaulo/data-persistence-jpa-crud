@@ -41,21 +41,26 @@ public class MenuTransacoes {
     @Autowired
     private ContaGeneric contaDAO;
 
-    public void obterTransacao(Transacao transacao) {
-      String idConta = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID da Conta")));
-      Date dataTransacao = new Date();
-      double valorTransacao = Double.parseDouble(JOptionPane.showInputDialog("Valor da Transacao"));
-  
-      Conta conta = contaDAO.findById(idConta).orElse(null);
-  
-      if (conta != null) {
-          transacao.setConta(conta);
-          transacao.setDataTransacao(dataTransacao);
-          transacao.setValorTransacao(valorTransacao);
-      } else {
-          JOptionPane.showMessageDialog(null, "Conta não encontrada com o ID fornecido.");
-      }
-  }
+    public void obterTransacao() {
+        List<Conta> contas = contaDAO.findAll(); // Supondo que você tenha um método findAll() em contaDAO
+        Conta contaEscolhida = (Conta) JOptionPane.showInputDialog(
+                null, "Selecione uma conta",
+                "Contas", JOptionPane.PLAIN_MESSAGE, null, contas.toArray(), null);
+        
+        if (contaEscolhida == null) {
+            JOptionPane.showMessageDialog(null, "Selecione uma conta válida");
+            return;
+        }
+        
+        Date dataTransacao = new Date();
+        double valorTransacao = Double.parseDouble(JOptionPane.showInputDialog("Valor da Transacao"));
+        
+        //Conta conta = contaDAO.findById(contaEscolhida).orElse(null);
+        
+        Transacao transacao = new Transacao(null, contaEscolhida, dataTransacao, valorTransacao);
+
+        transacaoDAO.save(transacao);
+    }
 
     public void listarTransacoes(List<Transacao> transacoes) {
         StringBuilder listagem = new StringBuilder();
@@ -116,15 +121,13 @@ public class MenuTransacoes {
         Integer id;
         switch (opcao) {
             case INSERIR:
-                transacao = new Transacao();
-                obterTransacao(transacao);
-                transacaoDAO.save(transacao);
+                obterTransacao();
                 break;
             case ATUALIZAR_POR_ID:
                 id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID da Transacao a ser alterada"));
                 transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
                 if (transacao != null) {
-                    obterTransacao(transacao);
+                    obterTransacao();
                     transacaoDAO.save(transacao);
                 } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível atualizar, pois a transacao não foi encontrada.");
