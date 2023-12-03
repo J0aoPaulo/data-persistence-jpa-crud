@@ -5,6 +5,8 @@ import com.persistJPHM.sistemapersistencia.DAO.TransacaoGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.Transacao;
 import lombok.extern.slf4j.Slf4j;
+
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,16 +48,17 @@ public class MenuTransacoes {
         Conta contaEscolhida = (Conta) JOptionPane.showInputDialog(
                 null, "Selecione uma conta",
                 "Contas", JOptionPane.PLAIN_MESSAGE, null, contas.toArray(), null);
-        
+
         if (contaEscolhida == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma conta válida");
             return;
         }
+
+        Hibernate.initialize(contaEscolhida.getTransacoes());
         
         Date dataTransacao = new Date();
         double valorTransacao = Double.parseDouble(JOptionPane.showInputDialog("Valor da Transacao"));
         
-        //Conta conta = contaDAO.findById(contaEscolhida).orElse(null);
         
         Transacao transacao = new Transacao(null, contaEscolhida, dataTransacao, valorTransacao);
 
