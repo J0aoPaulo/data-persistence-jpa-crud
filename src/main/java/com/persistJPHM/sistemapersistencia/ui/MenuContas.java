@@ -21,7 +21,6 @@ public class MenuContas {
         EXIBIR_POR_NUMERO,
         EXIBIR_TOTAL_CONTAS,
         EXIBIR_TODOS_NUMEROS,
-        EXIBIR_10_CONTAS_MAIS_TRANSACOES, 
         SAIR
     }
 
@@ -92,8 +91,7 @@ public class MenuContas {
                 3 - Exibir por numero de telefone
                 4 - Listar todas as contas
                 5 - Exibir todos os numeros de telefone
-                6 - Exibir as 10 contas com mais transacoes
-                7 - Sair
+                6 - Sair
                 """;
 
         String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -133,10 +131,6 @@ public class MenuContas {
             case EXIBIR_TODOS_NUMEROS:
                 List<String> numeros = baseConta.consultarTodosTelefones();
                 listarTelefone(numeros);
-                break;
-            case EXIBIR_10_CONTAS_MAIS_TRANSACOES:
-                contas = baseConta.findTop10ContasByTransacoes();
-                listarContas(contas);
                 break;
             case SAIR:
                 break;
