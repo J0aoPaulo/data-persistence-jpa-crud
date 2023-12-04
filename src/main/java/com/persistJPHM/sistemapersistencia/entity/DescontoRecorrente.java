@@ -44,7 +44,7 @@ public class DescontoRecorrente {
 
     @Override
     public String toString() {
-        return "DescontoRecorrente{idDesconto=" + id + ", valorDesconto=" + valorDesconto +
+        return "DescontoRecorrente{valorDesconto=" + valorDesconto +
                 ", id da conta=" + (descontoConta != null ? descontoConta.getId() : "null") +
                 ", dataDesconto=" + dataDesconto + "}";
     }

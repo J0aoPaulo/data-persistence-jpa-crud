@@ -27,8 +27,7 @@ public class Conta {
 
     private String numeroTelefone;
 
-    @ToString.Exclude
-    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Transacao> transacoes;
 
     @ToString.Exclude
@@ -46,8 +45,7 @@ public class Conta {
     public String toStringTodasContas() {
         StringBuilder sb = new StringBuilder();
         sb.append("Conta{")
-                .append("idConta=").append(id)
-                .append(", usuario=").append(usuario)
+                .append(usuario)
                 .append(", numeroTelefone='").append(numeroTelefone).append('\'')
                 .append(", transacoes=[");
 
