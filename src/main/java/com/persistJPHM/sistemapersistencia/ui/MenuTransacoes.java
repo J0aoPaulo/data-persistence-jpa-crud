@@ -1,10 +1,12 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
-import com.persistJPHM.sistemapersistencia.DAO.ContaDAO;
-import com.persistJPHM.sistemapersistencia.DAO.TransacaoDAO;
+import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
+import com.persistJPHM.sistemapersistencia.DAO.TransacaoGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.Transacao;
 import lombok.extern.slf4j.Slf4j;
+
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,26 +38,32 @@ public class MenuTransacoes {
     }
 
     @Autowired
-    private TransacaoDAO transacaoDAO;
+    private TransacaoGeneric transacaoDAO;
 
     @Autowired
-    private ContaDAO contaDAO;
+    private ContaGeneric contaDAO;
 
-    public void obterTransacao(Transacao transacao) {
-      int idConta = Integer.parseInt(JOptionPane.showInputDialog("ID da Conta"));
-      Date dataTransacao = new Date();
-      double valorTransacao = Double.parseDouble(JOptionPane.showInputDialog("Valor da Transacao"));
-  
-      Conta conta = contaDAO.findByidConta(idConta);
-  
-      if (conta != null) {
-          transacao.setConta(conta);
-          transacao.setDataTransacao(dataTransacao);
-          transacao.setValorTransacao(valorTransacao);
-      } else {
-          JOptionPane.showMessageDialog(null, "Conta não encontrada com o ID fornecido.");
-      }
-  }
+    public void obterTransacao() {
+        List<Conta> contas = contaDAO.findAll(); // Supondo que você tenha um método findAll() em contaDAO
+        Conta contaEscolhida = (Conta) JOptionPane.showInputDialog(
+                null, "Selecione uma conta",
+                "Contas", JOptionPane.PLAIN_MESSAGE, null, contas.toArray(), null);
+
+        if (contaEscolhida == null) {
+            JOptionPane.showMessageDialog(null, "Selecione uma conta válida");
+            return;
+        }
+
+        Hibernate.initialize(contaEscolhida.getTransacoes());
+        
+        Date dataTransacao = new Date();
+        double valorTransacao = Double.parseDouble(JOptionPane.showInputDialog("Valor da Transacao"));
+        
+        
+        Transacao transacao = new Transacao(null, contaEscolhida, dataTransacao, valorTransacao);
+
+        transacaoDAO.save(transacao);
+    }
 
     public void listarTransacoes(List<Transacao> transacoes) {
         StringBuilder listagem = new StringBuilder();
@@ -116,15 +124,13 @@ public class MenuTransacoes {
         Integer id;
         switch (opcao) {
             case INSERIR:
-                transacao = new Transacao();
-                obterTransacao(transacao);
-                transacaoDAO.save(transacao);
+                obterTransacao();
                 break;
             case ATUALIZAR_POR_ID:
                 id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID da Transacao a ser alterada"));
-                transacao = transacaoDAO.findById(id).orElse(null);
+                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
                 if (transacao != null) {
-                    obterTransacao(transacao);
+                    obterTransacao();
                     transacaoDAO.save(transacao);
                 } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível atualizar, pois a transacao não foi encontrada.");
@@ -132,16 +138,16 @@ public class MenuTransacoes {
                 break;
             case REMOVER_POR_ID:
                 id = Integer.parseInt(JOptionPane.showInputDialog("ID da Transacao"));
-                transacao = transacaoDAO.findById(id).orElse(null);
+                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
                 if (transacao != null) {
-                    transacaoDAO.deleteById(transacao.getIdTran());
+                    transacaoDAO.deleteById(String.valueOf(Integer.valueOf(transacao.getId())));
                 } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível remover, pois a transacao não foi encontrada");
                 }
                 break;
             case EXIBIR_POR_ID:
                 id = Integer.parseInt(JOptionPane.showInputDialog("ID da Transacao"));
-                transacao = transacaoDAO.buscaPorId(id);
+                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
                 exibirTransacao(transacao);
                 break;
             case EXIBIR_TODOS:
@@ -150,7 +156,7 @@ public class MenuTransacoes {
             case EXIBIR_POR_INTERVALO_VALOR:
                 double minValue = Double.parseDouble(JOptionPane.showInputDialog("Valor Mínimo"));
                 double maxValue = Double.parseDouble(JOptionPane.showInputDialog("Valor Máximo"));
-                transacoes = transacaoDAO.buscaPorContaId(minValue, maxValue);
+                transacoes = transacaoDAO.buscarEntreValores(minValue, maxValue);
                 listarTransacoes(transacoes);
                 break;
             case NUMERO_TRANSACOES:

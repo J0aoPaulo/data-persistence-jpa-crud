@@ -1,24 +1,25 @@
-package com.persistJPHM.sistemapersistencia.DAO;
+package com.persistJPHM.sistemapersistencia.DAO.jpa;
 
+import com.persistJPHM.sistemapersistencia.DAO.DescontoGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.DescontoRecorrente;
 
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DescontoRecorrenteDAO extends JpaRepository<DescontoRecorrente, Integer> {
+public interface DescontoRecorrenteJPADAO extends DescontoGeneric,
+        JpaRepository<DescontoRecorrente, String> {
   // ----------------------------- JPQL ----------------------------- //
 
   // busca todos os descontos de uma conta específica
   @Query("SELECT dr FROM DescontoRecorrente dr WHERE dr.descontoConta = :conta")
-  List<DescontoRecorrente> findAllByConta(@Param("conta") Conta conta);
-
+  List<DescontoRecorrente> findAllByConta(Conta conta);
 
   // ------------------------- Native Query ------------------------- //
   // busca o valor médio dos descontos recorrentes
@@ -27,14 +28,14 @@ public interface DescontoRecorrenteDAO extends JpaRepository<DescontoRecorrente,
 
   // busca uma lista de descontos que ocorrem em determinada data
   @Query(value = "SELECT * FROM desconto_recorrente WHERE data_desconto = :data", nativeQuery = true)
-  List<DescontoRecorrente> findAllByDataDesconto(@Param("data") Date data);
+  List<DescontoRecorrente> findAllByDataDesconto(Date data);
 
   
   // ------------------------- Named Query ------------------------- //
 
   // busca uma lista de de descontos com base em um intervalo de valores específicos
   @Query(name = "findAllByValorDescontoBetween")
-  List<DescontoRecorrente> findAllByValorDescontoBetween(@Param("minValor") double minValor, @Param("maxValor") double maxValor);
+  List<DescontoRecorrente> findAllByValorDescontoBetween(double minValor, double maxValor);
 
   // ---------------------- por nome do método ---------------------- //
 

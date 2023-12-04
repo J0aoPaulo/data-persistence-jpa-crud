@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 @NamedQueries({
     @NamedQuery(name = "findAllByValorDescontoBetween", query = "SELECT dr FROM DescontoRecorrente dr WHERE dr.valorDesconto BETWEEN :minValor AND :maxValor")
 })
-
+@Document(collection = "descontos")
 @Entity
 @Table(name = "desconto_recorrente")
 @AllArgsConstructor
@@ -20,8 +22,8 @@ import java.util.Date;
 @Data
 public class DescontoRecorrente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDesconto;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(name = "valor_desconto")
     private double valorDesconto;
@@ -42,8 +44,8 @@ public class DescontoRecorrente {
 
     @Override
     public String toString() {
-        return "DescontoRecorrente{idDesconto=" + idDesconto + ", valorDesconto=" + valorDesconto +
-                ", id da conta=" + (descontoConta != null ? descontoConta.getIdConta() : "null") +
+        return "DescontoRecorrente{valorDesconto=" + valorDesconto +
+                ", id da conta=" + (descontoConta != null ? descontoConta.getId() : "null") +
                 ", dataDesconto=" + dataDesconto + "}";
     }
 }

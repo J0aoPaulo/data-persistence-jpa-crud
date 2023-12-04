@@ -3,6 +3,8 @@ package com.persistJPHM.sistemapersistencia.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
 @NamedQueries({
@@ -10,6 +12,7 @@ import java.util.Date;
         @NamedQuery(name = "calculateAverageValue", query = "SELECT AVG(t.valorTransacao) FROM Transacao t")
 })
 
+@Document(collection = "transacoes")
 @Entity
 @Table(name = "Transacao")
 @NoArgsConstructor
@@ -17,8 +20,8 @@ import java.util.Date;
 @Data
 public class Transacao {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idTran;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @ManyToOne
     @ToString.Exclude
@@ -32,7 +35,7 @@ public class Transacao {
     private double valorTransacao;
 
     public String toString() {
-        String s = "Transacao(idTran=" + this.idTran + ", idConta=" + this.conta.getUsuario().getIdUsuario() + ", dataTransacao=" + this.dataTransacao + ", valorTransacao=" + this.valorTransacao + ")";
+        String s = "Transacao(idTran=" + this.id + ", idConta=" + this.conta.getUsuario().getId() + ", dataTransacao=" + this.dataTransacao + ", valorTransacao=" + this.valorTransacao + ")";
         return s;
     }
 }

@@ -4,10 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @NamedQueries({
         @NamedQuery(name = "listarTodosTelefones",
         query = "SELECT c.numeroTelefone FROM Conta c")
 })
+@Document(collection = "contas")
 @Entity
 @Table (name = "Conta")
 @AllArgsConstructor
@@ -16,7 +19,8 @@ import java.util.List;
 @ToString
 public class Conta {
     @Id
-    private Integer idConta;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @OneToOne
     private Usuario usuario;
@@ -41,8 +45,7 @@ public class Conta {
     public String toStringTodasContas() {
         StringBuilder sb = new StringBuilder();
         sb.append("Conta{")
-                .append("idConta=").append(idConta)
-                .append(", usuario=").append(usuario)
+                .append(usuario)
                 .append(", numeroTelefone='").append(numeroTelefone).append('\'')
                 .append(", transacoes=[");
 

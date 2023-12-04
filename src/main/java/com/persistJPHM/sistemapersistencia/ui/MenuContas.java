@@ -1,7 +1,7 @@
 package com.persistJPHM.sistemapersistencia.ui;
 
-import com.persistJPHM.sistemapersistencia.DAO.ContaDAO;
-import com.persistJPHM.sistemapersistencia.DAO.UsuarioDAO;
+import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
+import com.persistJPHM.sistemapersistencia.DAO.UsuarioGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 import com.persistJPHM.sistemapersistencia.entity.Usuario;
 import lombok.extern.slf4j.Slf4j;
@@ -25,28 +25,29 @@ public class MenuContas {
     }
 
     @Autowired
-    private ContaDAO baseConta;
+    private ContaGeneric baseConta;
 
     @Autowired
-    private UsuarioDAO baseUsuario;
-
-    @Autowired
-    private MenuTransacoes menuTransacoes;
+    private UsuarioGeneric baseUsuario;
 
     public void obterESalvarConta() {
-        String numeroTele = JOptionPane.showInputDialog(null, "Numero de telefone associado a conta: ");
-        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o id do usuario que será associado a conta"));
-
-        Usuario usuario = baseUsuario.findByIdUsuario(id);
-
+        List<Usuario> usuarios = baseUsuario.findAll();
+        Usuario usuario = (Usuario) JOptionPane.showInputDialog(
+                null, "Selecione um usuário",
+                "Usuários", JOptionPane.PLAIN_MESSAGE, null, usuarios.toArray(), null);
+    
         if (usuario == null) {
-            JOptionPane.showMessageDialog(null, "Digite um usuário existente");
-        } else {
-            Conta con = new Conta(id, usuario, numeroTele, null, null);
-            baseConta.save(con);
+            JOptionPane.showMessageDialog(null, "Selecione um usuário válido");
+            return;
         }
-        menuTransacoes.menu();
+    
+        String numeroTelefone = JOptionPane.showInputDialog(null, "Número de telefone associado à conta: ");
+    
+        Conta conta = new Conta(null, usuario, numeroTelefone, null, null);
+        
+        baseConta.save(conta);
     }
+    
 
     public void listarConta(Conta conta) {
         JOptionPane.showMessageDialog(null, conta == null ? "Nenhuma conta encontrada" : conta.toString());
@@ -87,7 +88,7 @@ public class MenuContas {
                 Menu Contas
                 1 - Inserir
                 2 - Exibir por id
-                3 - Exibir por numero de telefone   
+                3 - Exibir por numero de telefone
                 4 - Listar todas as contas
                 5 - Exibir todos os numeros de telefone
                 6 - Sair
@@ -114,8 +115,8 @@ public class MenuContas {
                 obterESalvarConta();
                 break;
             case EXIBIR_POR_ID:
-                int idConta = Integer.parseInt(JOptionPane.showInputDialog("Id da conta"));
-                conta = baseConta.findByidConta(idConta);
+                String idConta = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("Id da conta")));
+                conta = baseConta.findById(idConta).orElse(null);
                 listarConta(conta);
                 break;
             case EXIBIR_POR_NUMERO:
