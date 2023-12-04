@@ -39,19 +39,19 @@ public class MenuDesconto {
 
   public void obterDescontoRecorrente(DescontoRecorrente descontoRecorrente) {
     List<Conta> contas = baseConta.findAll();
-    
+
     if (contas.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Não há contas disponíveis. Não é possível inserir Desconto Recorrente.");
-        return;
+      JOptionPane.showMessageDialog(null, "Não há contas disponíveis. Não é possível inserir Desconto Recorrente.");
+      return;
     }
 
     Conta conta = (Conta) JOptionPane.showInputDialog(
-            null, "Selecione uma conta",
-            "Contas", JOptionPane.PLAIN_MESSAGE, null, contas.toArray(), null);
+        null, "Selecione uma conta",
+        "Contas", JOptionPane.PLAIN_MESSAGE, null, contas.toArray(), null);
 
     if (conta == null) {
-        JOptionPane.showMessageDialog(null, "Selecione uma conta válida. Desconto Recorrente não será inserido.");
-        return;
+      JOptionPane.showMessageDialog(null, "Selecione uma conta válida. Desconto Recorrente não será inserido.");
+      return;
     }
 
     double valorDesconto = Double.parseDouble(JOptionPane.showInputDialog("Valor do Desconto"));
@@ -62,7 +62,7 @@ public class MenuDesconto {
 
     baseDesconto.save(descontoRecorrente);
     JOptionPane.showMessageDialog(null, "Desconto Recorrente inserido com sucesso!");
-}
+  }
 
   public void listarDescontosRecorrentes(List<DescontoRecorrente> descontosRecorrentes) {
     StringBuilder listagem = new StringBuilder();
@@ -126,7 +126,8 @@ public class MenuDesconto {
         obterDescontoRecorrente(descontoRecorrente);
         break;
       case ATUALIZAR_POR_ID:
-        id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Desconto Recorrente a ser alterado")));
+        id = String.valueOf(
+            Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Desconto Recorrente a ser alterado")));
         descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
         if (descontoRecorrente != null) {
           obterDescontoRecorrente(descontoRecorrente);

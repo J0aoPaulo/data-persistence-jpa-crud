@@ -3,7 +3,6 @@ package com.persistJPHM.sistemapersistencia.DAO.jpa;
 import com.persistJPHM.sistemapersistencia.DAO.ContaGeneric;
 import com.persistJPHM.sistemapersistencia.entity.Conta;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

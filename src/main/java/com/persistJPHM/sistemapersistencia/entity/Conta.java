@@ -27,6 +27,7 @@ public class Conta {
 
     private String numeroTelefone;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL)
     private List<Transacao> transacoes;
 
