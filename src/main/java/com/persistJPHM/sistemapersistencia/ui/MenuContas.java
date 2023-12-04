@@ -17,7 +17,6 @@ public class MenuContas {
 
     private enum OpcaoMenu {
         INSERIR,
-        EXIBIR_POR_ID,
         EXIBIR_POR_NUMERO,
         EXIBIR_TOTAL_CONTAS,
         EXIBIR_TODOS_NUMEROS,
@@ -87,9 +86,8 @@ public class MenuContas {
         String menu = """
                 Menu Contas
                 1 - Inserir
-                2 - Exibir por id
-                3 - Exibir por numero de telefone
-                4 - Listar todas as contas
+                2 - Exibir por numero de telefone
+                3 - Listar todas as contas
                 5 - Exibir todos os numeros de telefone
                 6 - Sair
                 """;
@@ -113,11 +111,6 @@ public class MenuContas {
         switch (opcao) {
             case INSERIR:
                 obterESalvarConta();
-                break;
-            case EXIBIR_POR_ID:
-                String idConta = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("Id da conta")));
-                conta = baseConta.findById(idConta).orElse(null);
-                listarConta(conta);
                 break;
             case EXIBIR_POR_NUMERO:
                 String numeroTele = JOptionPane.showInputDialog("Numero de telefone");

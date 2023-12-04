@@ -24,14 +24,9 @@ public class MenuTransacoes {
 
     private enum OpcaoMenu {
         INSERIR,
-        ATUALIZAR_POR_ID,
-        REMOVER_POR_ID,
-        EXIBIR_POR_ID,
         EXIBIR_TODOS,
         EXIBIR_POR_INTERVALO_VALOR,
         NUMERO_TRANSACOES,
-        EXIBIR_POR_INTERVALO_DATA,
-        CALCULAR_MEDIA_VALOR,
         EXIBIR_VALOR_MAIS_BAIXO,
         EXIBIR_VALOR_MAIS_ALTO,
         SAIR
@@ -94,17 +89,12 @@ public class MenuTransacoes {
         String menu = """
                 Menu Transacoes
                 1 - Inserir
-                2 - Atualizar por ID
-                3 - Remover por ID
-                4 - Exibir por ID
-                5 - Exibir todos
-                6 - Exibir por intervalo de valor
-                7 - Número de transacoes
-                8 - Exibir por intervalo de data
-                9 - Calcular média do valor
-                10 - Exibir valor mais baixo
-                11 - Exibir valor mais alto
-                12 - Sair
+                2 - Exibir todos
+                3 - Exibir por intervalo de valor
+                4 - Número de transacoes
+                5 - Exibir valor mais baixo
+                6 - Exibir valor mais alto
+                7 - Sair
                 """;
 
         String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -126,30 +116,6 @@ public class MenuTransacoes {
             case INSERIR:
                 obterTransacao();
                 break;
-            case ATUALIZAR_POR_ID:
-                id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID da Transacao a ser alterada"));
-                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
-                if (transacao != null) {
-                    obterTransacao();
-                    transacaoDAO.save(transacao);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Não foi possível atualizar, pois a transacao não foi encontrada.");
-                }
-                break;
-            case REMOVER_POR_ID:
-                id = Integer.parseInt(JOptionPane.showInputDialog("ID da Transacao"));
-                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
-                if (transacao != null) {
-                    transacaoDAO.deleteById(String.valueOf(Integer.valueOf(transacao.getId())));
-                } else {
-                    JOptionPane.showMessageDialog(null, "Não foi possível remover, pois a transacao não foi encontrada");
-                }
-                break;
-            case EXIBIR_POR_ID:
-                id = Integer.parseInt(JOptionPane.showInputDialog("ID da Transacao"));
-                transacao = transacaoDAO.findById(String.valueOf(id)).orElse(null);
-                exibirTransacao(transacao);
-                break;
             case EXIBIR_TODOS:
                 listarTransacoes(transacaoDAO.findAll());
                 break;
@@ -163,18 +129,6 @@ public class MenuTransacoes {
                 int numTransacoes = transacaoDAO.numTransacoes();
                 JOptionPane.showMessageDialog(null, numTransacoes == 0 ? "Nenhuma transacao no sistema"
                         : "Número de transacoes no sistema: " + numTransacoes);
-                break;
-            case EXIBIR_POR_INTERVALO_DATA:
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                Date sd = dateFormat.parse(JOptionPane.showInputDialog("Data menor"));
-                Date ed = dateFormat.parse(JOptionPane.showInputDialog("Data maior"));
-                transacoes = transacaoDAO.findByDateInterval(sd, ed);
-                listarTransacoes(transacoes);
-                break;
-            case CALCULAR_MEDIA_VALOR:
-                Double mediaValor = transacaoDAO.calculateAverageValue();
-                JOptionPane.showMessageDialog(null, mediaValor == null ? "Nenhuma transacao no sistema"
-                        : "Média do valor das transacoes no sistema: " + mediaValor);
                 break;
             case EXIBIR_VALOR_MAIS_BAIXO:
                 transacao = transacaoDAO.findTopByOrderByValorTransacaoAsc();

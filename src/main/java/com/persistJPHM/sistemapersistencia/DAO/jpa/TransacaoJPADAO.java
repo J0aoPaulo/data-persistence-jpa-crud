@@ -32,17 +32,6 @@ public interface TransacaoJPADAO extends TransacaoGeneric,
   @Query(value = "SELECT COUNT(*) from Transacao t", nativeQuery=true)
 	public int numTransacoes();
 
-
-  // ------------------------- Named Query ------------------------- //
-  // busca uma lista de transações por intervalo de data
-  @Query(name = "findByDateInterval")
-  public List<Transacao> findByDateInterval(Date startDate, Date endDate);
-
-  // busca o valor médio das transacoes
-  @Query(name = "calculateAverageValue")
-  public Double calculateAverageValue();
-
-
   // ---------------------- por nome do método ---------------------- //
 
   // busca a transação com o valor mais baixo
