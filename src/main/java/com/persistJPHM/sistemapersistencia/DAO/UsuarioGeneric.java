@@ -19,7 +19,7 @@ public interface UsuarioGeneric {
 
     public void save(Usuario usu);
 
-    public void deleteById(String id);
+    public void deleteByCpf(String cpf);
 
     public Optional<Usuario> findById(String id);
 
