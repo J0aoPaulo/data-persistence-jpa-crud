@@ -13,8 +13,6 @@ public interface ContaGeneric {
 
     public List<String> consultarTodosTelefones();
 
-    List<Conta> findTop10ContasByTransacoes();
-
         public void save(Conta conta);
 
         public void deleteById(String id);
