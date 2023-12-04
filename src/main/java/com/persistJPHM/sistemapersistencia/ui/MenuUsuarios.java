@@ -19,10 +19,8 @@ public class MenuUsuarios {
         ATUALIZAR_POR_CPF,
         REMOVER_POR_CPF,
         EXIBIR_POR_CPF,
-        EXIBIR_POR_ID,
         EXIBIR_TODOS,
         EXIBIR_POR_NOME,
-        EXIBIR_USUARIOS_ENTRE_IDS,
         EXIBIR_POR_LETRA,
         BUSCAR_POR_TRES_PRIMEIROS_DIGITOS,
         LISTAR_QUANTIDADE_CONTAS,
@@ -71,13 +69,12 @@ public class MenuUsuarios {
                 2 - Atualizar por CPF
                 3 - Remover por CPF
                 4 - Exibir por CPF
-                5 - Exibir por id
-                6 - Exibir todos
-                7 - Exibir todos que contém determinado nome
-                8 - Exibir usuarios por uma letra específica
-                9 - Buscar usuarios pelos 3 primeiros numeros do cpf
-                10 - Listar a quantidade de contas existentes
-                11 - Sair
+                5 - Exibir todos
+                6 - Exibir todos que contém determinado nome
+                7 - Exibir usuarios por uma letra específica
+                8 - Buscar usuarios pelos 3 primeiros numeros do cpf
+                9 - Listar a quantidade de contas existentes
+                10 - Sair
                 """;
 
         String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -125,11 +122,6 @@ public class MenuUsuarios {
             case EXIBIR_POR_CPF:
                 cpf = JOptionPane.showInputDialog("CPF");
                 usu = baseUsuario.findFirstByCpf(cpf);
-                listaUsuario(usu);
-                break;
-            case EXIBIR_POR_ID:
-                int id = Integer.parseInt(JOptionPane.showInputDialog("Id"));
-                usu = baseUsuario.findById(String.valueOf(id)).orElse(null);
                 listaUsuario(usu);
                 break;
             case EXIBIR_TODOS:

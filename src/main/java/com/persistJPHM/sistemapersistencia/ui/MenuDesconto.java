@@ -20,9 +20,6 @@ public class MenuDesconto {
 
   private enum OpcaoMenu {
     INSERIR,
-    ATUALIZAR_POR_ID,
-    REMOVER_POR_ID,
-    EXIBIR_POR_ID,
     EXIBIR_TODOS,
     EXIBIR_POR_CONTA,
     CALCULAR_MEDIA_VALOR,
@@ -94,15 +91,12 @@ public class MenuDesconto {
     String menu = """
         Menu Desconto Recorrente
         1 - Inserir
-        2 - Atualizar por ID
-        3 - Remover por ID
-        4 - Exibir por ID
-        5 - Exibir todos
-        6 - Exibir por conta
-        7 - Calcular média do valor
-        8 - Exibir valor mais alto
-        9 - Exibir valor mais baixo
-        10 - Sair
+        2 - Exibir todos
+        3 - Exibir por conta
+        4 - Calcular média do valor
+        5 - Exibir valor mais alto
+        6 - Exibir valor mais baixo
+        7 - Sair
         """;
 
     String opcaoStr = JOptionPane.showInputDialog(menu);
@@ -124,32 +118,6 @@ public class MenuDesconto {
       case INSERIR:
         descontoRecorrente = new DescontoRecorrente();
         obterDescontoRecorrente(descontoRecorrente);
-        break;
-      case ATUALIZAR_POR_ID:
-        id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Desconto Recorrente a ser alterado")));
-        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
-        if (descontoRecorrente != null) {
-          obterDescontoRecorrente(descontoRecorrente);
-          baseDesconto.save(descontoRecorrente);
-        } else {
-          JOptionPane.showMessageDialog(null,
-              "Não foi possível atualizar, pois o desconto recorrente não foi encontrado.");
-        }
-        break;
-      case REMOVER_POR_ID:
-        id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente")));
-        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
-        if (descontoRecorrente != null) {
-          baseDesconto.deleteById(descontoRecorrente.getId());
-        } else {
-          JOptionPane.showMessageDialog(null,
-              "Não foi possível remover, pois o desconto recorrente não foi encontrado");
-        }
-        break;
-      case EXIBIR_POR_ID:
-        id = String.valueOf(Integer.parseInt(JOptionPane.showInputDialog("ID do Desconto Recorrente")));
-        descontoRecorrente = baseDesconto.findById(String.valueOf(Integer.valueOf(id))).orElse(null);
-        exibirDescontoRecorrente(descontoRecorrente);
         break;
       case EXIBIR_TODOS:
         listarDescontosRecorrentes(baseDesconto.findAll());
