@@ -114,7 +114,7 @@ public class MenuUsuarios {
                 cpf = JOptionPane.showInputDialog("CPF");
                 usu = baseUsuario.findFirstByCpf(cpf);
                 if (usu != null) {
-                    baseUsuario.deleteById(String.valueOf(Integer.valueOf(usu.getId())));
+                    baseUsuario.deleteByCpf(usu.getCpf());
                 } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível remover, pois o usuario não foi encontrado");
                 }

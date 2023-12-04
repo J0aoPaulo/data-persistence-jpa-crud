@@ -44,17 +44,9 @@ public class Conta {
 
     public String toStringTodasContas() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Conta{")
+        sb.append("Conta: ")
                 .append(usuario)
-                .append(", numeroTelefone='").append(numeroTelefone).append('\'')
-                .append(", transacoes=[");
-
-        if (transacoes != null) {
-            for (Transacao tr : transacoes) {
-                sb.append("{valorTransacao=").append(tr.getValorTransacao()).append("}, ");
-            }
-        }
-        sb.append("]}");
+                .append(", numeroTelefone='").append(numeroTelefone).append('\'');
         return sb.toString();
     }
 }
