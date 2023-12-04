@@ -116,8 +116,8 @@ public class MenuTransacoes {
         }
 
         return OpcaoMenu.values()[opcaoInt - 1];
-    }
-
+    }  
+    
     private void realizarAcao(OpcaoMenu opcao) throws HeadlessException, ParseException {
         Transacao transacao;
         List<Transacao> transacoes;
