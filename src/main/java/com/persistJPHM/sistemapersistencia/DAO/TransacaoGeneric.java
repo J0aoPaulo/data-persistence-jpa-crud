@@ -12,8 +12,6 @@ public interface TransacaoGeneric {
 
     public int numTransacoes();
 
-    public List<Transacao> findByDateInterval(Date startDate, Date endDate);
-
     public Double calculateAverageValue();
 
     public Transacao findTopByOrderByValorTransacaoAsc();
